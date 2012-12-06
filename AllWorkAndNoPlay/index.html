@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>/dev/fun</title>
+
+    <!-- This presentation makes use of http://www.w3.org/Talks/Tools/Slidy/ -->
+    <!-- Slidy styles and functionality -->
+    <link href="../_/slidy/slidy.css"       rel="stylesheet" type="text/css" media="all"  />
+    <link href="../_/slidy/w3c-blue2.css"   rel="stylesheet" type="text/css" media="all" />
+    <script src="../_/slidy/slidy.js" charset="utf-8" type="text/javascript"></script>
+
+    <!-- General customizations of Slidy -->
+    <link href="../_/CustomSlideStyle.css"  rel="stylesheet" type="text/css" media="all" />
+
+    <!-- Customizations of Slidy for this specific slideshow-->
+    <link rel="stylesheet" href="slidy.css" type="text/css" media="all"  />
+    <link rel="stylesheet" href="../_/Font-Awesome/css/font-awesome.css" type="text/css" media="all"  />
+    <!--[if lt IE 9]><![endif]-->
+
+
+    <!-- JS Mindmap -->
+    <link rel="stylesheet" href="../_/js-mindmap/js-mindmap.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="../_/js-mindmap/js-mindmap.js"></script>
+
+    <!--
+    PREPARATION:
+        If you find it difficult to think up a decent slideshow, http://www.w3.org/QA/2008/09/slideshow-must-go-on.html
+        has some good tips and pointers to get you started and help you along.
+
+    DEVELOPMENT:
+        - add class="outline" to collapse lists and class="expand" to expand collapsed list items
+        - add class="incremental" to a any item to make it's display incremental
+        - add class="non-incremental" to any item to exclude it from incremental display
+        - add <div class="handout"> to hide information in slideshow-mode
+
+    OPERATION:
+        * Works across browsers and is operated like PowerPoint
+        * Advance to next slide with mouse click or space bar
+        * Move forward/backward between slides with Cursor Left, Cursor Right, Pg Up and Pg Dn keys
+        * Home key for first slide, End key for last slide
+        * The "C" key for an automatically generated table of contents (or click on "contents" on the toolbar)
+        * Function F11 to go full screen and back
+        * The "F" key toggles the display of the footer
+        * The "A" key toggles display of current vs all slides
+        * Use the "A" key when you want to view or print all slides
+        * Font sizes automatically adapt to browser window size
+        * use S and B keys for manual control (or < and >, or the - and + keys on the number pad
+        * See also the use of the meta element for adjusting the default Slidy behavior
+
+    FIXME:
+        - Lower versions of IE are not supported (do we want to or just display the content *sans* slidy?)
+        - Our fullscreen CSS breaks when "all slides" mode is enabled
+        - (This slideshow only:) CSS of the cover slide breaks when "all slides" mode is enabled
+    TODO:
+        - make .handout available on things other than div's
+        - make it possible to hide slides from printing
+    -->
+
+    <!-- Following line is displayed in the footer -->
+    <meta name="copyright" content="Copyright &#169; 2012 B.M. Peachey" />
+
+    <!-- Following line will add a counter (in minutes) to the footer-->
+    <meta name="duration" content="45" />
+
+    <!-- Following line allows you to adjust the font size -->
+    <meta name="font-size-adjustment" content="-1" />
+
+    <!-- <a href="/#(5)">Link to slide nr.5.</a> -->
+    <!-- <div class="handout">Some text for in the handout, will not appear in the slideshow.</div> -->
+
+</head>
+
+<body class="">
+<!-- ======================================================================= -->
+<!--                            HEAD BANNER                                  -->
+<!-- ======================================================================= -->
+<div class="background">
+    <img src="../_/img/potherca_southpark_head.png" id="head-icon" />
+</div>
+
+
+<!-- ======================================================================= -->
+<!--                             WHO AM I                                    -->
+<!-- ======================================================================= -->
+<div class="slide">
+    <h1 class="non-incremental">Who am I?</h1>
+    <h2>Ben Peachey / Potherca</h2>
+    <ul>
+        <li>
+            Kick-Ass Web Developer
+        </li>
+        <!--<li>-->
+        <!--Founder of PHPTwente-->
+        <!--</li>-->
+    </ul>
+</div>
+
+
+<!-- ======================================================================= -->
+<!--                          OPENING COVER                                  -->
+<!-- ======================================================================= -->
+<div class="slide cover front-cover">
+    <div>
+        <h3>/dev/fun</h3>
+        <p>All work and no play makes development #$%@ boring</p>
+    </div>
+</div>
+
+<!-- ======================================================================= -->
+<!--                          ALL WORK AND NO PLAY                           -->
+<!-- ======================================================================= -->
+<div class="slide hide_in_print">
+    <h1 class="non-incremental">All work and no play</h1>
+    <img class="fullscreen" src="img/all_work_and_no_play____by_cdemi.jpg" alt="All work and no play makes Jack a dull boy!" />
+</div>
+
+<!-- ======================================================================= -->
+<!--                          PLAY IS IMPORTANT                              -->
+<!-- ======================================================================= -->
+<div class="slide hide_in_print play_important">
+    <h1>Why is play important?</h1>
+    <h2>Just ask these guys...</h2>
+    <a href="http://www.ted.com/talks/stuart_brown_says_play_is_more_than_fun_it_s_vital.html"
+            >Stuart Brown: Play is more than fun</a>
+    <iframe src="http://embed.ted.com/talks/stuart_brown_says_play_is_more_than_fun_it_s_vital.html" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+    <a href="http://www.ted.com/talks/tim_brown_on_creativity_and_play.html"
+            >Tim Brown: Tales of creativity and play</a>
+    <iframe src="http://embed.ted.com/talks/tim_brown_on_creativity_and_play.html" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+    <a href="http://www.ted.com/talks/steve_keil_a_manifesto_for_play_for_bulgaria_and_beyond.html"
+            >Steve Keil: A manifesto for play, for Bulgaria and beyond</a>
+    <iframe src="http://embed.ted.com/talks/steve_keil_a_manifesto_for_play_for_bulgaria_and_beyond.html" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+</div>
+
+<!-- ======================================================================= -->
+<!--                                FLOW                                     -->
+<!-- ======================================================================= -->
+<div class="slide hide_in_print">
+    <h1 class="non-incremental">Play is Important</h1>
+    <img class="fullscreen" src="img/flow-diagram.jpg" alt="" />
+</div>
+
+
+<!-- ======================================================================= -->
+<!--                               MINDMAP                                   -->
+<!-- ======================================================================= -->
+
+<div class="slide non-incremental mindmap">
+    <h1>How to have more fun?</h1>
+    <iframe src="mindmap.html" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    <!--<a href="mindmap.html"><img src="img/mindmap.png"/></a>-->
+</div>
+
+
+<!-- ======================================================================= -->
+<!--                          CLOSING COVER                                  -->
+<!-- ======================================================================= -->
+<div class="slide hide_in_print">
+    <h1>That's all folks!</h1>
+    <img class="fullscreen" src="../_/img/thats_all_folks.jpg" alt="That's all folks!" />
+</div>
+
+</body>
+</html>
+
+<!--
+2.1 Achievements
+2.2 Appointments
+2.3 Behavioral Momentum
+2.4 Blissful Productivity
+2.5 Bonuses
+2.6 Cascading Information Theory
+2.7 Combos
+2.8 Community Collaboration
+2.9 Countdown
+2.10 Discovery
+2.11 Epic Meaning
+2.12 Free Lunch
+2.13 Infinite Gameplay
+2.14 Levels
+2.15 Loss Aversion
+2.16 Lottery
+2.17 Ownership
+2.18 Points
+2.19 Progression
+2.20 Quests
+2.21 Reward Schedules
+2.22 Status
+2.23 Urgent Optimism
+2.24 Virality
+
+achievement "badges"[7]
+achievement levels[7]
+"leader boards"
+a progress bar or other visual meter to indicate how close people are to completing a task a company is trying to encourage, such as completing a social networking profile or earning a frequent shopper loyalty award.[8]
+virtual currency
+systems for awarding, redeeming, trading, gifting, and otherwise exchanging points
+challenges between users
+embedding small casual games within other activities.[2]

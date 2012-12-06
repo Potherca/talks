@@ -1,0 +1,162 @@
+/* Customize the Blue-Theme
+ ******************************************/
+#head-logo {
+    background: none;
+}
+
+#head-icon {
+    background: none;
+    margin-top: 0;
+}
+
+.slide {
+    -moz-box-shadow:    0 0 1em 0.25em #ccc;
+    -webkit-box-shadow: 0 0 1em 0.25em #ccc;
+    box-shadow:         0 0 1em 0.25em #ccc;
+
+}
+div.slide h1 {
+    color: #666;
+    text-align: center;
+    text-shadow: 0.1em 0.1em 0.1em #CCC;
+}
+
+div.slide.cover h1,
+div.slide.first-slide h1 {
+    -moz-box-shadow:    none;
+    -webkit-box-shadow: none;
+    box-shadow:         none;
+}
+
+
+div.slide * {
+    color: #333;
+}
+
+div.background {
+    height: 2.1em;
+    background-color: #FFF;
+}
+
+div.toolbar {
+    color: #699;
+}
+
+ul li {
+    background: none;
+}
+/*
+ ******************************************/
+
+/* To work around a CSS rendering bug in IE relating to margins, you can set display:inline on floated elements. */
+.incomplete {
+	color: #C00;
+	display: inline-list;
+	border-bottom: 2px dashed;
+}
+
+.incomplete ul li {
+	color: black;
+}
+
+em,
+.emphasis {
+	font-style: italic;
+}
+
+.important {
+	font-weight: bold;
+}
+
+li.incomplete {
+	width: 10em;
+	position: relative;
+}
+
+.note {
+	font-size: smaller;
+	color: #888;
+}
+
+.note:before {
+	content: " (";
+}
+
+.note:after {
+	content: ")";
+}
+
+.overlay {
+	position: absolute;
+	float: left;
+}
+
+.fullscreen {
+	width: 100%;
+	height: 98%; /* leave some room for the infobar */
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.column2 {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 50%;
+}
+
+.strike {
+	text-decoration: line-through;
+}
+
+.code {
+	white-space: pre;
+	font-family: monospace
+}
+
+.align_top {
+	vertical-align: top;
+}
+
+th {
+	text-align: right;
+	white-space: nowrap;
+}
+
+/* Comparison Table
+******************************************/
+.compare {
+	font-size: small;
+	table-layout: fixed;
+	width: 40em;
+}
+
+.compare td {
+	text-align: right;
+	width: 10em;
+}
+
+.compare tbody td {
+	border: 1px solid;
+}
+
+.compare thead th {
+	text-align: center;
+	line-height: 1em;
+	position: relative;
+	vertical-align: top;
+	white-space: normal;
+}
+
+.compare thead th span {
+	font-size: smaller;
+}
+
+.compare tfoot {
+	font-size: smaller;
+}
+
+.compare tfoot a {
+	font-weight: bold;
+}

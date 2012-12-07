@@ -4,45 +4,7 @@
     <title>Mindmap</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="../_/js-mindmap/js-mindmap.css" />
-    <!--<link rel="stylesheet" href="mindmap.css" />-->
-    <style>
-        .js-mindmap-active a.node {
-            border: 1px solid lightgray;
-            border-radius: 1em;
-        }
-        .js-mindmap-active a.node.active {
-            padding:5px 10px !important;
-            border-width:5px !important;
-        }
-        .js-mindmap-active a.node.activeparent {
-            padding:5px 10px !important;
-            /*border-width:5px !important;*/
-            background:#8B0000;
-        }
-
-        .js-mindmap-active .root   {background-color: blue;}
-        .js-mindmap-active .level1 {background-color: lightblue;}
-        .js-mindmap-active .level2 {background-color: lightcoral;}
-        .js-mindmap-active .level3 {background-color: lightsalmon;}
-        .js-mindmap-active .level4 {background-color: orange;}
-        .js-mindmap-active .node.hasChild {border-color: black;}
-
-        .js-mindmap-active .node.active.end {
-            width: 100%;
-            height: 100%;
-            top: 0 !important;
-            left: 0 !important;
-            z-index: 1000;
-            font-size: 3000%;
-            border-radius: 0;
-            line-height: 100%;
-            font-weight: bold;
-            background-color: black;
-            opacity: 0.99;
-
-            /* @TODO: Use a CSS3 Transition! */
-        }
-    </style>
+    <link rel="stylesheet" href="mindmap.css" />
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>

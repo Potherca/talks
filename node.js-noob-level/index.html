@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title></title>
+
+	<meta name="author" content="potherca">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+
+    <style>
+        .strike-through-red {
+            color:red;
+            text-decoration:line-through;
+        }
+        .strike-through-red span {
+            color: rgb(101, 123, 131);
+        }
+        
+        section .background-screen {
+            background: rgb(253, 246, 227);
+            background: rgba(253, 246, 227, 0.8);
+            border-radius: 1em;
+            padding: 0.5em;
+            margin: 0.5em;
+        }
+
+        section .cli-example {
+            color: white;
+            font-family: monospace;
+            background-color: rgb(0, 0, 0);
+            padding: 1em;
+        }
+        section .browser-example {
+            font-family: monospace;
+            background-color: rgb(100%, 100%, 100%);
+        }
+        
+        section .gotcha pre {
+            margin: 0 auto;
+            border: 0;
+            box-shadow: none;
+        }
+        
+        section .tools td,
+        section .tools th {
+            text-align: center;
+            width: 25%;
+        }
+        .reveal section img {
+            border: 0;
+        }
+
+        .me {
+            position: relative;
+        }
+        
+        .me img {
+            border-radius: 100%;
+            height: 50%;
+        }
+        
+        .me h1 {
+            position: absolute;
+            top: 0;
+            left: 50%;            
+        }
+        
+    </style>
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section data-slide-nr="1">
+				<h1>node.js <br /> N00b no more!</h1>
+				<h3>
+				    A lightweight introduction to node.js
+				</h3>
+			</section>
+
+            <section data-slide-nr="2">
+                Lightning Talk [image]
+                <aside class="notes">
+                    Lightning Talk, Not Smalltalk
+                </aside>
+			</section>
+
+            <section data-slide-nr="3" data-background="black">
+                <ol>
+                    <li>n00b</li>
+                    <li class="strike-through-red"><span>beginner</span></li>
+                    <li class="strike-through-red"><span>intermediar</span></li>
+                    <li class="strike-through-red"><span>ninja</span></li>
+                </ol>
+
+                <aside class="notes">
+                    What level are you at?
+                </aside>
+			</section>
+<!--
+            <section data-slide-nr="4">
+                <ol>
+                    <li><input name="n00b" placeholder="n00b"/></li>
+                    <li><input name="beginner" placeholder="beginner" /></li>
+                    <li><input name="intermediar" placeholder="intermediar"/></li>
+                    <li><input name="ninja" placeholder="ninja"/></li>
+                </ol>
+                <aside class="notes">
+                    Let me just write down your names for future reference
+
+                </aside>
+			</section>
+-->
+            <section data-slide-nr="5" data-background="img/nodejs-2560x1440.png">
+                <div class="background-screen fragment fade-in fade-out">
+                    <h3>Event-driven, non-blocking I/O model</h3>
+
+                    <p>Similar in design to
+                        <a href="http://rubyeventmachine.com/">Event Machine</a> in Ruby,
+                        <a href="http://twistedmatrix.com/">Twisted</a> in Python or
+                        <a href="http://reactphp.org/">React</a> in Php
+                    </p>
+                </div>
+                <div class="background-screen fragment current-visible">
+                    <ul>
+                        <li>Server-side Javascript</li>
+                        <li>Code executed by the <a href="http://code.google.com/p/v8/">V8</a> engine</li>
+                        <li>Single-threaded <small>[1]</small></li>
+                        <li>System bindings written in C++</li>
+                        <li>Started in 2009</li>
+                        <li>First Released in 2011</li>
+                    </ul>
+
+                   <hr>
+
+                    <p>
+                        <small><sup>1:</sup> multiple threads for file and network events</small>
+                    </p>
+                </div>
+
+                <aside class="notes">
+                    What is node.js?
+                </aside>
+			</section>
+
+            <section data-slide-nr="6">
+                <section>
+                    <h1>INSTALL</h1>
+                    <img src="img/platform-icon-osx.png" />
+                    <img src="img/platform-icon-win.png" />
+                    <img src="img/platform-icon-generic.png" />
+                    <h2>
+                        Use <a href="http://nodejs.org/download/">installer for Windows or Mac</a>
+                        or <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">package manager for Linux</a> 
+                    </h2>
+                </section>
+                <aside class="notes">
+                    Quickly get up and running
+                </aside>
+			</section>
+
+            <section data-slide-nr="7">
+                <section>
+                    <div>
+                        <p class="cli-example fragment current-visible">$ bash hello-world.sh</p>
+                        <p class="cli-example fragment current-visible">$ java hello-world.jar</p>
+                        <p class="cli-example fragment current-visible">$ php hello-world.php</p>
+                        <p class="cli-example fragment current-visible">$ python hello-world.py</p>
+                        <p class="cli-example fragment current-visible">$ ruby hello-world.rb</p>
+                        <p class="cli-example fragment grow">$ node hello-world.js</p>
+                    </div>
+			    </section>
+			    <section>
+                    <div class="fragment grow">
+                        <p><code>hello-world.js</code></p>
+                        <pre><code>
+                    console.log('Hello World!');
+                        </code></pre>
+                        </div>
+                        <aside class="notes">
+                            Simply run a script from the command line
+                        </aside>
+			    </section>
+			    <section data-background="black">
+			        <code class="cli-example">Hello World!</code>
+			    </section>
+			</section>
+
+            <section data-slide-nr="9">
+			    <section>
+                    <div class="fragment grow">
+                <p><code>hello-www-world.js</code></p>
+                <pre><code>
+            var http = require('http');
+
+            http.createServer(function (request, response) {
+              response.writeHead(200, {'Content-Type': 'text/plain'});
+              response.send('Hello World!\n');
+            }).listen(1337, "127.0.0.1");
+
+            console.log('Server running at http://127.0.0.1:1337/');
+                    </code></pre>
+			    </section>
+			    <section data-background="black">
+			        <code class="cli-example">Server running at http://127.0.0.1:1337/</code>
+			    </section>
+
+			    <section data-background="white">
+			        <code class="browser-example">Hello World!</code>
+			    </section>
+
+			    <section data-background="img/screenshot-chrome-hello-world.png">
+			    </section>
+
+                <aside class="notes">
+                    A simple example
+                </aside>
+			</section>
+
+            <section data-slide-nr="10">
+                <section>
+                    <pre><code>
+                var http = require('http');
+                    </code></pre>
+			    </section>
+                <section>
+                    <h1><code>require</code></h1>
+			    </section>
+                <section>
+                    <h1>Core Modules</h1>
+                    <p>
+                    assert, buffer, childprocess, cluster, console, constants, crypto, debugger, dgram, dns, domain, events, freelist, fs, http, https, linklist, module, net, os, path, punycode, querystring, readline, repl, stream, stringdecoder, sys, timers, tls, tty, url, util, vm, zlib, 
+                    </p>
+                    <p><small>https://github.com/joyent/node/tree/master/lib</small></p>
+			    </section>
+                <aside class="notes">
+                    "require" explained
+                </aside>
+            </section>
+
+            <section data-slide-nr="8" data-background="rgb(203, 56, 55)">
+                <section data-background="img/npm.png">
+                    <h1 class="fragment background-screen">node package manager</h1>
+                </section>
+
+                <section>
+                    <p class="background-screen">
+                        npm &lt;command&gt; [args]
+                    </p>
+			    </section>
+
+                <section>
+                    <code class="cli-example">$ npm install <span class="">________</span></code>
+			    </section>
+
+			    <section data-background="img/screenshot-npm-express.png">
+			    </section>
+
+                <section>
+                    <code class="cli-example">$ npm install <span class="fragment">express</span></code>
+			    </section>
+
+
+                <aside class="notes">
+                    Manage your packages with NPM
+                </aside>
+			</section>
+
+
+            <section data-slide-nr="11">
+                <section data-background="black">
+                    <ol>
+                        <li class="strike-through-red"><span>n00b</span></li>
+                        <li><span>beginner</span></li>
+                        <li class="strike-through-red"><span>intermediar</span></li>
+                        <li class="strike-through-red"><span>ninja</span></li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h1><a href="http://expressjs.com/">Express</a></h1>
+                    <ul>
+                        <li><a href="http://geeklist.com/">GeekList</a></li>
+                        <li><a href="http://klout.com/">Klout</a></li>
+                        <li><a href="http://koding.com/">Koding</a></li>
+                        <li><a href="http://myspace.com/">MySpace</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="fragment grow">
+                        <p><code>hello-www-world-express.js</code></p>
+                        <pre><code>
+            var express, app, server;
+                
+            express = require('express');
+            app = express();
+            
+            app.get('/hello-world.txt', function(request, response){
+                response.send('Hello World!');
+            });
+            
+            var server = app.listen(1337, function() {
+                console.log('Listening on port %d', server.address().port);
+            });
+                    </code></pre>
+		        </section>
+
+			    <section data-background="black">
+			        <code class="cli-example">Server running at http://127.0.0.1:1337/</code>
+			    </section>
+
+			    <section data-background="white">
+			        <code class="browser-example">Cannot GET /</code>
+			    </section>
+
+                <section>
+                    <div class="gotcha">
+                        <p><code>hello-www-world-express.js</code></p>
+                        <pre><code>
+            var express, app, server;
+                
+            express = require('express');
+            app = express();
+                        </code></pre>
+                        <pre class="fragment grow"><code>
+            app.get('/hello-world.txt', function(request, response){
+                response.send('Hello World!');
+            });
+                        </code></pre>
+                        <pre><code>
+            var server = app.listen(1337, function() {
+                console.log('Listening on port %d', server.address().port);
+            });
+                        </code></pre>
+                    </div>
+		        </section>
+		        
+			    <section data-background="white">
+			        <code class="browser-example">Hello World!</code>
+			    </section>
+
+                <aside class="notes">
+                    Just use a web framework
+                </aside>
+			</section>
+<!--
+            <section data-slide-nr="12">
+                <aside class="notes">
+                    PHP-R-US
+                </aside>
+			</section>
+-->
+            <section data-slide-nr="13">
+                <section>
+                <table class="tools">
+                    <tr>
+                        <td>
+                            <img src="img/grunt-logo.png"/>
+                        </td>
+                        <td>     
+                            <img src="img/jshint-logo.png"/>
+                        </td>
+                        <td>     
+                            <img src="img/csslint-logo.png"/>
+                        </td>
+                        <td>     
+                            <img src="img/bower-logo.png"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><a href="">Grunt</a></th>
+                        <th><a href="">JsHint</a></th>
+                        <th><a href="">CssHint</a></th>
+                        <th><a href="">Bower</a></th>
+                    </tr>                        
+                    <tr>
+                        <td>The JavaScript Task Runner</td>
+                        <td>Detects errors and problems in JavaScript code</td>
+                        <td>Points out problems with your CSS code</td>
+                        <td>A package manager for the web</td>
+                    </tr>
+                </table>     
+                    <aside class="notes">
+                        What you can use node.js for now
+                    </aside>
+			    </section>
+                <section data-slide-nr="14">
+                        <h1 class="fragment roll-in">Get it</1>
+                        <h1 class="fragment roll-in">Try it</h1>
+                        <h1 class="fragment roll-in">Grok it</h1>
+			    </section>
+			</section>
+
+<!--
+            <section data-slide-nr="15">
+                <aside class="notes">
+                    Where to go from here
+                </aside>
+			</section>
+-->
+            <section data-slide-nr="16" data-background="rgb(140, 200, 75)">
+                <section data-background="img/question-icon-by-Krisada-from-the-noun-project.png">
+                </section>
+                <aside class="notes">
+                    Questions?
+                </aside>
+			</section>
+
+            <section data-slide-nr="17">
+                <div class="me">
+                    <img src="http://pother.ca/images/avatars/ben-cartoon-background-red-680-square.png"/>
+                    <h1>
+                        <a href="http://pother.ca/">Potherca</a><br />
+                        <a href="https://twitter.com/potherca">@potherca</a>
+                    </h1>
+                </div>
+                <aside class="notes">
+                    I have been Potherca
+                </aside>
+			</section>
+
+            <section data-slide-nr="17">
+                <ul>
+                    <li>http://code.google.com/p/v8/</li>
+                    <li>http://expressjs.com/</li>
+                    <li>http://reactphp.org/</li>
+                    <li>http://rubyeventmachine.com/</li>
+                    <li>http://twistedmatrix.com/</li>
+                    <li>https://github.com/joyent/node/tree/master/lib</li>
+                    <li>http://nodejs.org/download/</li>
+                    <li>https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager</li>
+                    <li>Question icon by Krisada from The Noun Project licensed under Creative Commons Attribution</li>
+                </ul>
+                <aside class="notes">
+                    Credit where it is due
+                </aside>
+			</section>
+
+            <section data-slide-nr="18" data-background="../_/img/thats_all_folks.jpg">
+                <aside class="notes">
+                    That's all folks!
+                </aside>
+			</section>
+		</div>
+
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+            slideNumber: true,              // Display the page number of the current slide
+            previewLinks: true,             // Opens links in an iframe preview overlay
+            transition: 'linear',           // default/cube/page/concave/zoom/linear/fade/none // Transition style
+            backgroundTransition: 'slide',  // default/none/slide/concave/convex/zoom // Transition style for full page slide backgrounds
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+        Reveal.configure({
+            slideNumber: true,
+            backgroundTransition: 'slide'
+        });
+
+
+	</script>
+
+</body>
+</html>

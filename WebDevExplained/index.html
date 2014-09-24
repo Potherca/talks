@@ -13,6 +13,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    <link rel="stylesheet" href="../_/potherc.css">
     <link rel="stylesheet" href="../_/reveal-js/css/reveal.min.css">
     <link rel="stylesheet" href="../_/reveal-js/css/theme/solarized.css" id="theme">
 
@@ -35,9 +36,39 @@
     <![endif]-->
 
     <style>
+        .strike-through-red {
+            color:red;
+            text-decoration:line-through;
+        }
+        .strike-through-red span {
+            color: rgb(101, 123, 131);
+        }
+        
         .reveal section img {
             border: 0;
         }
+        
+        .overview .in-theory {
+            background-color: lightblue;
+        }
+        
+        .overview .in-practice {
+            background-color: sandybrown;
+        }
+        
+        .overview .in-person {
+            background-color: lightgreen;
+        }
+        
+        .reveal .large li {
+            font-size: 200%;
+            line-height: 150%;
+            display: block;
+            font-weight: bold;
+        }        
+        .reveal .center {
+            text-align: center;
+        }        
     </style>
 </head>
 
@@ -45,13 +76,6 @@
 
     <div class="reveal">
 
-<!--
-    De lezing is in het kader van de module Leren Kennen, waarin een oriëntatie
-    gegeven wordt op de vakgebied en de opleiding. We hebben met de
-    bedrijfslezingen op het oog, dat ze wat meer inzicht krijgen in hoe er in het
-    bedrijfsleven met software ontwikkeling omgegaan wordt. Wat komt er allemaal
-    bij kijken.
--->
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
@@ -59,181 +83,207 @@
 
             <!-- OPENING -->
             <section data-slide-nr="1">
-                <h1>Web Development</h1>
-                <h3>
-                    Who wants to be a Software Engineer for the Web?
-                </h3>
+                <section data-slide-nr="2">
+                    <h1>Web Development</h1>
+                    <h3>
+                        Who wants to be a Software Engineer for the Web?
+                    </h3>
+                </section>
+                <section data-slide-nr="3" class="overview">
+                    <h2>About Web Development</h2>
+                    <ul class="stretch large center">
+                        <li class="in-theory fragment">in Theory</li>
+                        <li class="in-practice fragment">in Practice</li>
+                        <li class="in-person fragment">in Person</li>
+                    </ul>
+                    <aside class="notes">
+                        What we will be covering today
+                    </aside>
+                </section>
+                <section data-slide-nr="4">
+                    <h2>About me</h2>
+                    <ul>
+                        <li>Ben Peachey</li>
+                        <li>Making Websites and Web Applications since 1997</li>
+                        <li>
+                            <del class="strike-through-red"><span>Senior Software Developer</span></del> 
+                            <span>Kick-ass Webdeveloper</span> <br/> @ The Bean Machine</li>
+                        <li>
+                            Contributor of Issues, Fixer of typos, Member of Usergroups
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        Who am I? What Have I Done?
+                    </aside>
+                </section>
+                <section data-slide-nr="5">
+                    <img class="stretch" src="img/BeanMachineNerfGun.jpg" />
+                    <aside class="notes">
+                        And I have a Nerf Gun
+                    </aside>
+                </section>
             </section>
-            <section data-slide-nr="2">
-                <h3>Web Development</h3>
-                <ul>
-                    <li>in Theory</li>
-                    <li>in Practice</li>
-                    <li>in Person</li>
-                </ul>
-                <aside class="notes">
-                    What we will be covering today
-                </aside>
-            </section>
-            <section data-slide-nr="3">
-                <ul>
-                    <li>Name</li>
-                    <li>Experience</li>
-                    <li>Current Position</li>
-                    <li>Contributions</li>
-                </ul>
-                <aside class="notes">
-                    Who am I? What Have I Done?
-                </aside>
-            </section>
-            <section data-slide-nr="4">
-                @TODO: Twitter #HASHTAG
-                <aside class="notes">
-                    Make some noise!
-                </aside>
-            </section>
-            <section data-slide-nr="5">
-                @TODO: Picture of a nerf gun
-                <aside class="notes">
-                    And I have a Nerf Gun
-                </aside>
-            </section>
-
+    
 
             <!-- IN THEORY -->
-            <section class="in-theory" data-slide-nr="6">
+            <section class="in-theory" data-slide-nr="6" data-background="lightblue">
+
+                <section class="in-theory" data-slide-nr="6-1">
+                    <h1>Theory</h1>
+                </section>
+
+                <section class="in-theory" data-slide-nr="7">
+                    <img class="stretch" src="img/Detailed_DoD_Technical_Reference_Model.jpg" />
+                    <aside class="notes">
+                        Software Development in General
+                    </aside>
+                </section>
+                <section class="in-theory" data-slide-nr="8">
+                    <img class="stretch" src="img/truncated-history-of-computer-languages.png" />
+                    
+                    <aside class="notes">
+                        Software Development is a is young field of work 1950
+                        
+                        Charles Babbage - Designed the Analytical Engine              - 1837
+                        Ada Lovelace    - Began the study of scientific computation   - 1843
+
+                        John Atanasoff	- Built the first electronic digital computer - 1939
+                        Jean Bartik     - One of first computer programmers           - 1946
+                    </aside>
+                </section>
+                <section class="in-theory" data-slide-nr="9">
+                    <ul class="large">
+                        <li>Specify</li>
+                        <li>Design</li>
+                        <li>Build</li>
+                        <li>Test</li>
+                        <li>Deploy</li>
+                    </ul>
+                    <aside class="notes">
+                        Software development life cycle
+                    </aside>
+                </section>
+                <section class="in-theory" data-slide-nr="10">
+                    <img class="stretch" src="img/a-web-site-designed.jpg" />
+                    <aside class="notes">
+                        Web Software development life cycle
+                    </aside>
+                </section>
+                <section class="in-theory" data-slide-nr="11">
+                    <img class="stretch" src="img/venn-diagram-of-web-production.png" />
+                    <aside class="notes">
+                        What is the difference to other forms of Software Development?
+                        Its a specialism - A Subset
+                    </aside>
+                </section>
+                
+                <section class="in-theory salaries" data-slide-nr="12">
+                    <h2>A Specialist you say?</h2>
+                    <h3 class="fragment">That must pay well!</h2>
+                    <h2 class="fragment currently-visible">Less than you'd expect...</h2>
+                    <img class="stretch" src="img/salaris.png"/></td>
+                    <aside class="notes">
+                        What does it pay?
+                    </aside>
+                </section>                
+                <section class="in-theory" data-slide-nr="14">
+                    <img class="stretch" src="img/evolution-of-the-web_technologies-small.png" />
+                    <aside class="notes">
+                        The internet is very young
+                        Web Development is even younger than that - Starting 1990
+                    </aside>
+                </section>
+                <section class="in-theory" data-slide-nr="15">
+                    <img class="stretch" src="img/mobile-versus-desktop-usage.jpg" />
+                    <aside class="notes">
+                        Usage is still growing
+                    </aside>
+                </section>                
+                <section class="in-theory fragment" data-slide-nr="15">
+                    <h2>"The Stack"</h2>
+                    <img class="stretch" src="img/stacks-change.jpg" />
+                    <aside class="notes">
+                        Full Stack Webdeveloper -  There no such thing!
+                    </aside>
+                </section>
+
+                <section class="in-theory" data-slide-nr="16">
+                    <ul>
+                        <li>Learn it in school</li>
+                        <li>Learn it once then use it</li>
+                        <li>Learn it now, use it later</li>
+                    </ul>
+                    <aside class="notes">
+                        Learning
+                    </aside>
+                </section>
+                
+                <section class="in-theory" data-slide-nr="17">
+                    <h3>W3C Standards</3>
+                    <img class="stretch" src="img/TechStack.png" />
+                    <aside class="notes">
+                        Standards
+                        <ul>
+                            <li>There are many</li>
+                            <li>They are verbose</li>
+                            <li>They may get interpreted differently by different vendors</li>
+                            <li>More are on the way</li>
+                        </ul>
+                    </aside>
+                </section>
+<!--                    
+                <section class="in-theory" data-slide-nr="18">
+                    @TODO: Explain this
+                    <aside class="notes">
+                        The web is a mashup of APIs
+                    </aside>
+                </section>
+-->
+                <section class="in-theory" data-slide-nr="19">
+                    <ul>
+                        <li>Things are always changing</li>
+                        <li>Its hard to keep up</li>
+                        <li>There is always more you don't know</li>
+                    </ul>
+                    <aside class="notes">
+                        The workfield moves fast
+                    </aside>
+                </section>
+<!---
+                <section class="in-theory" data-slide-nr="20">
+                    @TODO: Look up desk vs. mobile vs. machine
+                    <ul>
+                        <li>Mobile Apps overtook Desktop in the USA in January 2014</li>
+                    </ul>
+                    <aside class="notes">
+                        Usage is still growing
+                    </aside>
+                </section>
+-->
+                <section class="in-theory" data-slide-nr="21">
+                    <h2>...and then?</h2>
+                    <ul>
+                        <li>Specialize</li>
+                        <li>Move up the chain</li>
+                        <li>Step Aside</li>
+                    </ul>
+                    <aside class="notes">
+                        What can you do besides 'dev'?
+                        What can you do after 'dev'?
+                    </aside>
+                </section>
+                <section class="in-theory" data-slide-nr="22">
+                    <p>
+                        Practice makes <del class="strike-through-red"><span>perfect</span></del> you better at what you do.
+                    </p>
+                    <aside class="notes">
+                        The only solution is to practice
+                    </aside>
+                </section>
+
 
                 <aside class="notes">
                     Theory
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="7">
-                <aside class="notes">
-                    Software in General
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="8">
-                <aside class="notes">
-                    What does it pay?
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="9">
-                <aside class="notes">
-                    Software Development is a is young field of work
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="10">
-                <ul>
-                    <li>Specify</li>
-                    <li>Design</li>
-                    <li>Build</li>
-                    <li>Test</li>
-                    <li>Deploy</li>
-                </ul>
-                <aside class="notes">
-                    Software development life cycle
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="11">
-                Its a specialism
-                <aside class="notes">
-                    What is the difference to other forms of Software Development?
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="12">
-                Full Stack Webdeveloper?
-                There no such thing!
-
-                There is way to much in the stack all for one dev.
-                <aside class="notes">
-                    The Stack
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="13">
-                <aside class="notes">
-                    The internet is very young
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="14">
-                <aside class="notes">
-                    Web Development is even younger than that
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="15">
-                <ul>
-                    <li>Languages</li>
-                    <li>Technologies</li>
-                    <li>Usage (Users/Data)</li>
-                    <li>Zooming in to the latest part...</li>
-                </ul>
-                <aside class="notes">
-                    Timeline of the Web
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="16">
-                <ul>
-                    <li>Learn it in school</li>
-                    <li>Learn it once then use it</li>
-                    <li>Learn it now, use it later</li>
-                </ul>
-                <aside class="notes">
-                    Learning
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="17">
-                <ul>
-                    <li>There are many</li>
-                    <li>They are verbose</li>
-                    <li>They may get interpreted differently by different vendors</li>
-                    <li>More are on the way</li>
-                </ul>
-                @TODO: Make graph of standards per year
-                <aside class="notes">
-                    Standards
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="18">
-                @TODO: Explain this
-                <aside class="notes">
-                    The web is a mashup of APIs
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="19">
-                <ul>
-                    <li>Things are always changing</li>
-                    <li>Its hard to keep up</li>
-                    <li>There is always more you don't know</li>
-                </ul>
-                <aside class="notes">
-                    The workfield moves fast
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="20">
-                @TODO: Look up desk vs. mobile vs. machine
-                <ul>
-                    <li>Mobile Apps overtook Desktop in the USA in January 2014</li>
-                </ul>
-                <aside class="notes">
-                    Usage is still growing
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="21">
-                <ul>
-                    <li>Specialize</li>
-                    <li>Move up the chain</li>
-                    <li>Step Aside</li>
-                </ul>
-                <aside class="notes">
-                    What can you do besides 'dev'?
-                    What can you do after 'dev'?
-                </aside>
-            </section>
-            <section class="in-theory" data-slide-nr="22">
-                <p>
-                    Practice makes <del>perfect</del>you better at what you do.
-                </p>
-                <aside class="notes">
-                    The only solution is to practice
                 </aside>
             </section>
 
@@ -242,8 +292,8 @@
             <section class="interim" data-slide-nr="23">
                 <ul>
                     <li>Who here already programs?</li>
-                    <li>What languages?</li>
-                    <li>When did you start?</li>
+                    <li class="fragment">What languages?</li>
+                    <li class="fragment">When did you start?</li>
                 </ul>
 
                 <aside class="notes">
@@ -253,241 +303,257 @@
 
 
             <!-- IN PRACTISE -->
-            <section class="in-practice" data-slide-nr="24">
+            <section class="in-practice" data-slide-nr="24" data-background="sandybrown">
+
+                <section class="in-practice" data-slide-nr="25">
+                    <h1>Everything works in theory</h1>
+                    <aside class="notes">
+                        Everything works in theory
+                    </aside>
+                </section>
+
+                <section class="in-practice" data-slide-nr="26">
+                    <h2>What could go wrong?</h2>
+                    <ul class="fragment">
+                        <li>Design by Comity</li>
+                        <li>Browsers</li>
+                        <li>Languages</li>
+                        <li>Your Code</li>
+                        <li>Other Peoples Code</li>
+                    </ul>
+                    <aside class="notes">
+                        In practice everything is broken
+                    </aside>
+                </section>
+
+                <section class="in-practice" data-slide-nr="26-1">
+                    <h2>Standards</h2>
+                    <img class="stretch" src="img/competing-standards.png" />
+                    <aside class="notes">
+                        In practice everything is broken
+                    </aside>
+                </section>
+
+
+                <section class="in-practice" data-slide-nr="26-1">
+                    <h2>Browsers</h2>
+                    <img class="stretch" src="img/web-separation-of-layers.png" />
+                    <aside class="notes">
+                        In practice everything is broken
+                    </aside>
+                </section>
+
+                <section class="in-practice" data-slide-nr="26-2">
+                    <h2>JS</h2>
+                    <img class="stretch" src="img/caniuse-js-support-summary.png" />
+                </section>
+
+
+                <section class="in-practice" data-slide-nr="26-3">
+                    <h2>CSS</h2>
+                    <img class="stretch" src="img/caniuse-css-support-summary.png" />
+                </section>
+
+                <section class="in-practice" data-slide-nr="26-4">
+                    <h2>HTML5</h2>
+                    <img class="stretch" src="img/caniuse-html5-support-summary.png" />
+                </section>
+
+
+
+                <section class="in-practice" data-slide-nr="27">
+                    <img class="stretch" src="img/Project-triangle.png" />
+                    <aside class="notes">
+                        There is never enough Time or Money
+                    </aside>
+                </section>
+
+                <section class="in-practice" data-slide-nr="28">
+                    <ul class="stretch large center">
+                        <li>Old Code = Old Mistakes</li>
+                        <li>New Code = New Mistakes</li>
+                        <li>New Code becomes Old Code</li>
+                    </ul>
+                    <aside class="notes">
+                        New Code/Old Code = Broken
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="29">
+                    <h1 class="large">Work !== Work</h1>
+                    <aside class="notes">
+                        There is a difference between coding for yourself
+                        or for a boss or customers
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="30">
+                    <h1>AAAAAAAAAAaaaaaaaaaaaaaaaAAaaaRGH!</h1>
+                    <aside class="notes">
+                        Is it all doomed?
+                    </aside>
+                </section>
+                
+                <section class="in-practice" data-slide-nr="30">
+                    Things are getting better
+                    <aside class="notes">
+                        Silver Lining
+                    </aside>
+                </section>
+                
+                <section class="in-practice" data-slide-nr="31">
+                    <img class="stretch" src="img/adoption-rate-of-web-standards.png" />
+                    <aside class="notes">
+                        Adoption rate is improving
+                    </aside>
+                </section>
+
+                
+                <section class="in-practice" data-slide-nr="31">
+                    <h1>You are improving as well</h1>
+                    <aside class="notes">
+                        Adoption rate is improving
+                    </aside>
+                </section>
+
+                
+                <section class="in-practice" data-slide-nr="32">
+                    <ul>
+                        <li>Critical Mass</li>
+                        <li>Solutions occur closer to the problem</li>
+                        <li>Libs, Frameworks, Tools, etc.</li>
+                        <li>Have the same problems</li>
+                        <li>No need to solve them yourself</li>
+                        <li>Use other peoples solutions</li>
+                    </ul>
+                    <aside class="notes">
+                        A lot of problems have already been solved
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="33">
+                    <ul class="large center">
+                        <li class="fragment">Solve Problems</li>
+                        <li class="fragment">Many Posibilities</li>
+                        <li class="fragment">Find fun things to do</li>
+                    </ul>
+                    <aside class="notes">
+                        Creativity
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="34">
+                    Sooner than you think
+                    <aside class="notes">
+                        A point will come where you get to build things instead of fix them
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="35">
+                    <h1>New Things to </h1>
+                    <ul class="fragment">
+                        <li>Build</li>
+                        <li>Invent</li>
+                        <li>Experience</li>
+                    </ul>
+                    <aside class="notes">
+                        You get to do something new
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="36">
+                    Don't loose that feeling of freedom and joy.
+                    Have Some Fun!
+                    <aside class="notes">
+                        Build Stuff in your spare time
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="37">
+                    Even when work isn't fun
+                    <aside class="notes">
+                        You can also have fun at work
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="38">
+                    <img src="img/pure-css-simpsons.png" />
+                    <aside class="notes">
+                        Personal preference makes all the difference
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="39">
+                    Find an environment that suits you as a person
+                    <aside class="notes">
+                        Find an environment that suits you as a person
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="40">
+                    <img class="stretch" src="img/Screenshot-Treading-the-PHPath-pyramid.png" />
+                    <aside class="notes">
+                        What kind of programmer would you like to be?
+                    </aside>
+                </section>
+                <section class="in-practice" data-slide-nr="41">
+                    <h1>So... What did I do this week?</h1>
+                    <aside class="notes">
+                        So... What did I do this week?
+                    </aside>
+                </section>
+
                 <aside class="notes">
                     Practice
                 </aside>
             </section>
-            <section class="in-practice" data-slide-nr="25">
-                But not in practice
-                (@TODO: Works on my machine?)
-                <aside class="notes">
-                    Everything works in theory
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="26">
-                <ul>
-                    <li>Design by Comity - W3C @TODO: Mention others</li>
-                    <li>Browsers</li>
-                    <li>Languages</li>
-                    <li>Your Code</li>
-                    <li>Other Peoples Code</li>
-                </ul>
-                ALL BROKEN
-                <aside class="notes">
-                    In practice everything is broken
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="27">
-                "The Triangle"
-                <aside class="notes">
-                    There is never enough Time or Money
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="28">
-                <ul>
-                    <li>Old Code = Old Mistakes</li>
-                    <li>New Code = New Mistakes</li>
-                    <li>New Code becomes Old Code</li>
-                </ul>
-                <aside class="notes">
-                    New Code/Old Code = Broken
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="29">
-                Work !== Work
-                <aside class="notes">
-                    There is a difference between coding for yourself
-                    or for a boss or customers
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="30">
-                AAAAAAAAAAaaaaaaaaaaaaaaaAAaaaRGH!
-                <aside class="notes">
-                    Is it all doomed?
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="31">
-                <ul>
-                    <li>Things are slowly improving in the work field</li>
-                    <li>You, yourself, improve as well</li>
-                </ul>
-                @TODO: Expand with some examples
-                <aside class="notes">
-                    Silver Lining
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="32">
-                <ul>
-                    <li>Critical Mass</li>
-                    <li>Solutions occur closer to the problem</li>
-                    <li>Libs, Frameworks, Tools, etc.</li>
-                    <li>Have the same problems</li>
-                    <li>Noo need to solve them yourself</li>
-                    <li>Use other peoples solutions</li>
-                </ul>
-                <aside class="notes">
-                    A lot of problems have already been solved
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="33">
-                <ul>
-                    <li>Solve Problems</li>
-                    <li>Many Posibilities</li>
-                    <li>Find the things that are fun to do</li>
-                </ul>
-                <aside class="notes">
-                    Creativity
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="34">
-                Sooner than you think
-                <aside class="notes">
-                    A point will come where you get to build things instead of fix them
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="35">
-                <ul>
-                    <li>Build</li>
-                    <li>Invent</li>
-                    <li>Experience</li>
-                </ul>
-                <aside class="notes">
-                    You get to do something new
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="36">
-                Don't loose that feeling of freedom and joy.
-                Have Some Fun!
-                <aside class="notes">
-                    Build Stuff in your spare time
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="37">
-                Even when work isn't fun
-                <aside class="notes">
-                    You can also have fun at work
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="38">
-                <aside class="notes">
-                    Personal preference makes all the difference
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="39">
-                <aside class="notes">
-                    Find an environment that suits you as a person
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="40">
-                <aside class="notes">
-                    What kind of programmer would you like to be?
-                </aside>
-            </section>
-            <section class="in-practice" data-slide-nr="41">
-                <aside class="notes">
-                    So... What did I do this week?
-                </aside>
-            </section>
-
-
+    
             <!-- INTERIM -->
-            <section class="in-practice" data-slide-nr="42">
+            <section class="" data-slide-nr="42">
+                <h1>Who would like a Nerf Gun?</h1>
                 <aside class="notes">
+                    You can win it!
                 </aside>
             </section>
 
 
 
             <!-- IN PERSON -->
-            <section class="in-person" data-slide-nr="43">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="44">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="45">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="46">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="47">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="48">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="49">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="50">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="51">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="52">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="53">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="54">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="55">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="56">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="57">
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="in-person" data-slide-nr="58">
-                <aside class="notes">
-                </aside>
-            </section>
             <section class="in-person" data-slide-nr="59">
+                <h3>Different Viewpoints</h3>
+                <ul>
+                    <li>Customers</li>
+                    <li>Co-Workers</li>
+                    <li>Managers</li>
+                    <li>Bosses</li>
+                    <li>Designers</li>
+                    <li>Sales/Marketing</li>
+                    <li>Testers</li>
+                </ul>
+                <aside class="notes">
+                    So Many People
+                </aside>
+            </section>
+            
+            <section class="in-person" data-slide-nr="43">
+                <h1>The Dunning-Kruger Effect</1>
+                <img class="stretch" src="img/Dunning-Kruger.jpg" />
                 <aside class="notes">
                 </aside>
             </section>
+            
+            <section class="in-person" data-slide-nr="43">
+                <h1>Socialise</1>
+                <aside class="notes">
+                You need to engage the community to grow
+                </aside>
+            </section>
+            
+            <section class="in-person" data-slide-nr="59">
+                <h3>So Many Tales To Tell</h3>
+                <ul>
+                    <li>Usergroups</li>
+                    <li>Rebecca Purple</li>
+                    <li>Team Work</li>
+                    <li>Conferences</li>
+                    <li>General Incompetence</li>
+                </ul>
+                <aside class="notes">
+                </aside>
+            </section>
+
 
             <!-- CLOSING -->
-            <section data-slide-nr="2" data-background="black or an image url img/nodejs-2560x1440.png">
-
-                Your slide goes here
-
-                <div class="background-screen fragment fade-in fade-out">
-                    <h3>already present goes away</h3>
-                </div>
-                or
-                <div class="background-screen fragment current-visible">
-                    comes and goes later
-                </div>
-
-                <aside class="notes">
-                    some notes go here...
-                </aside>
-            </section>
-
-
             <section data-slide-nr="" data-background="rgb(140, 200, 75)">
                 <section data-background="../_/img/question-icon-by-Krisada-from-the-noun-project.png">
                 </section>
@@ -497,13 +563,10 @@
             </section>
 
             <section data-slide-nr="">
-                <div class="me">
-                    <img src="../_/img/ben-cartoon-background-red-680-square.png"/>
-                    <h1>
-                        <a href="http://pother.ca/"><small>http://</small>Pother.ca</a><br />
-                        <a href="https://twitter.com/potherca"><span>@</span>potherca</a>
-                    </h1>
-                </div>
+                <h1>
+                    <a href="https://twitter.com/potherca"><span>@</span>potherca</a>
+                </h1>
+                <img src="../_/img/ben-cartoon-background-red-680-square.png"/>
                 <aside class="notes">
                     I have been Potherca
                 </aside>

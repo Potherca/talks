@@ -3,67 +3,66 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Available Presentations</title>
-    <link href="./_/CustomSlideStyle.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/CssBase/css/ribbon.css"  rel="stylesheet" type="text/css" media="all" />
-    
+    <title>Presentations by Potherca</title>
+    <link href="http://pother.ca/CssBase/css/base.css"  rel="stylesheet" type="text/css" media="all" />
+    <link href="http://pother.ca/CssBase/css/ribbon.css"  rel="stylesheet" type="text/css" media="all" />
+
     <style>
-    @import url(http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono);
+        .page li {
+            list-style-type: none;
+            margin: 1em 0;
+        }
+        .page a:first-child {
+            color: black;
+            margin: .35em -1em;
+        }
 
-    body {
-        width: 40em;
-        margin: 1em auto;
-    }
-    
-    h1, h2, a, dl {
-        font-family: 'Droid Sans', sans-serif;
-        color: #666;
-    }
-    
-    h1 {
-        text-align: center;
-    }
-    
-    dl a {
-        text-decoration: none;
-    }
-
-    dl a strong {
-        font-weight: bold;
-        color: black;
-    }
-    dl a:hover strong {
-        text-decoration: underline;
-    }
-    
-    dt {
-        display: list-item;
-        list-style: inside;
-    }
+        .page a:first-child::after {
+            content:"\A"; white-space:pre;
+        }
 
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://rawgithub.com/chjj/marked/master/lib/marked.js"></script>
+    <script>
+        var sUrl = 'readme.md';
+        $.get(sUrl, function(p_sResult) {
+            $('body').html(
+                    marked(p_sResult)
+            );
+        });
+    </script>
+
 </head>
 
-<body class="">
-    <h1>Slideshows for Presentations</h1>
-    <h2>The following slides are available:</h2>
-    <dl>
-        <dt>
-            <a href="AllWorkAndNoPlay/">
-                <strong>/dev/fun</strong> - All work and no play makes development #$%@ boring
-            </a>
-        </dt>
-        <dd>PHPTwente Meetup - December 2012<dd>
-        <dt>
-            <a href="node.js-noob-level/">
-                <strong>NODE.JS - N00B NO MORE!</strong> - A LIGHTWEIGHT INTRODUCTION TO NODE.JS
-            </a>
-        </dt>
-        <dd>PHPTwente Meetup - December 2012<dd>
-    </dl>
+<body>
+    <div class="page">
+        <p>Content could not be loaded. Please <a href="README.md" class="source">visit the text version here</a>.</p>
+    </div>
 
-	<div class="banner banner-right"><a 
-	    href="https://github.com/potherca/Presentations/"
+    <script>
+        var sUrl = $('.source').attr('href');
+
+        $.get(sUrl, function(p_sResult) {
+
+            $('.page').html(
+                    marked(p_sResult)
+            );
+
+            $('code').addClass('css');
+
+            var $H1 = $('h1');
+            if($H1.length > 0){
+                document.title = $H1.text() || 'Untitled Document';
+            }
+
+        });
+
+    </script>
+
+    <div class="banner banner-right"><a
+        href="https://github.com/potherca/Presentations/"
     >Fork me on GitHub</a></div>
 </body>
 </html>

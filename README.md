@@ -3,7 +3,7 @@
 This repository contains HTML versions of various talks I have given.
 
 ## The following slides are available:
-- [** Web Development Explained ** - Who wants to be a Software Engineer for the Web?](WebDevExplained)
+- [**Web Development Explained** - Who wants to be a Software Engineer for the Web?](WebDevExplained)
    Bedrijfslezing Saxion Enschede - September 2014
 
 - [**NODE.JS - N00B NO MORE!** - A LIGHTWEIGHT INTRODUCTION TO NODE.JS](node.js-noob-level/)

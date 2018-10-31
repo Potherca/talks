@@ -1,0 +1,1724 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+
+  <meta name="description" content="">
+  <meta name="author" content="potherca">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><style>
+/* Styles specific to this talk */
+
+/*
+  @TODO: Check and fix padding and margin of example blocks
+         - "language" blocks
+         - "example-config" blocks (rename "example-file" ?)
+         - "example-command" blocks (rename "example-git-command" ?)
+*/
+/*=======( On All Slides )====================================================*/
+  .sponsor {
+    z-index: 100;
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 10%;
+  }
+/*=======( Specific Slides )==================================================*/
+
+/*-------( Git Ignore | Three levels of ignorance Table )---------------------*/
+  .reveal section .fragment.strike.visible.current-fragment {
+    opacity: 0.4;
+  }
+
+/*-------( Git Command List )-------------------------------------------------*/
+  .reveal .command-list {
+    column-count: 7;
+    column-gap: 20px;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .reveal .command-list li {
+    font-size: 40%;
+  }
+
+/*-------( Authors | Mailmap )--------------------------------------------------------*/
+  [data-badge=".mailmap"] code {
+    font-size: 80% !important;
+  }
+
+/*-------( Git alias |git alias alias)--------------------------------------------------*/
+  [style*="yo-dawg-git-alias.jpg"] {
+    filter: blur(10px);
+  }
+
+/*=======( Specific elements )================================================*/
+
+  .reveal section .fragment-container {
+    position: relative;
+  }
+
+  .reveal section .fragment-container .fragment {
+    position: absolute;
+    top: -2px;
+    left: 20px;
+  }
+
+  .reveal section thead th {
+    text-align: center;
+  }
+
+  .reveal section td {
+    white-space: nowrap;
+  }
+
+  .reveal section s {
+    text-decoration-color: red;
+    opacity: 0.4;
+  }
+
+  .reveal section blockquote::before {
+    content: '“';
+  }
+
+  .reveal section blockquote::after {
+    content: '”';
+  }
+
+  .reveal section .example-config .badge {
+    color: black;
+    background-color: white;
+  }
+
+  .reveal section [data-badge="@TODO"] {
+    background: lightyellow;
+    border: 1px solid yellow;
+    color: black;
+  }
+
+  .reveal section [data-badge="@TODO"] span.badge {
+    left: -10%;
+    right: auto;
+    top: -10%;
+  }
+
+  .reveal section .manual-link {
+    font-size: 60%;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .reveal section span.badge.example {
+    top: 1em;
+  }
+
+  .reveal section pre {
+    width: 100%;
+    background-color: #000;
+  }
+
+  .reveal .cli-example,
+  .reveal .example-command,
+  .reveal .example-config {
+    font-family: monospace;
+    width: 100%;
+  }
+
+  .reveal .example-config {
+    background-color: #FFF;
+    color: #333;
+  }
+
+  .reveal .example-config[data-badge] {
+    margin-top: 2em;
+    padding-top: 0.25em;
+  }
+
+  .reveal .example-command,
+  .reveal .cli-example {
+    background-color: #000;
+    color: #FFF;
+    font-size: 60%;
+    margin: 4rem 0;
+    padding: 2.5rem 0 1rem 0;
+  }
+
+  .reveal pre.cli-example {
+    padding: 1rem 0 0 0;
+  }
+
+  [data-badge] .badge.version {
+    color: #F54D27;
+    background-color: #F0F0E8;
+
+    /* [data-badge] span.badge.bottomRight */
+    top: auto;
+    right: -2%;
+    bottom: 0;
+    left: auto;
+    margin: -0.7em 0;
+  }
+
+/*=======( Helper classes )===================================================*/
+
+  .reveal section .X-badge {
+    background-color: #000;
+    border-radius: 10px;
+    border: 1px solid #000;
+    box-shadow: 2px 2px 4px rgba(0, 0,0, 0.5);
+    color: #FFF;
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    line-height: 1em;
+    margin: 0.1em 0;
+    padding: 0.15em 0.25em;
+  }
+
+  .reveal section .X-badge.version {background-color: #F0F0E8; color: #F54D27;}
+  .reveal section .X-badge.license {background-color: #007ec6; color: #FFF;}
+
+  .reveal section img.no-border { background:none; border:none; box-shadow:none; }
+
+  .reveal section .size-double {
+    transform: scale(1.5) translate(0%, 25%);
+    width: 50%;
+  }
+
+  .reveal section .size-three-quarter,
+  .reveal section .size-three-quarters {
+    transform: scale(0.75) translate(-25%);
+    width: 150%;
+  }
+
+  .reveal section .size-half,
+  .reveal section .size-two-quarter,
+  .reveal section .size-two-quarters {
+    transform: scale(0.5) translate(-50%);
+    width: 200%;
+  }
+
+  .reveal section .size-one-quarter,
+  .reveal section .size-quarter {
+    transform: scale(0.25) translate(-150%);
+    width: 400%;
+  }
+
+/*=======( Browser )==========================================================*/
+.reveal section .browser {
+  border:0.075em solid rgb(195, 195, 195);
+  border-radius: 0.25em;
+  box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
+  text-align: left;
+  vertical-align: top;
+}
+
+.reveal section .browser__head {
+  background: #E8E8E8;
+  border-radius: 0.15em 0.15em 0 0;
+  font-size: 60%;
+  height: 1.5em;
+}
+
+.reveal section .browser__bullet {
+    height: 0.75em;
+    width: 0.75em;
+    display: inline-block;
+    background: #ccc;
+    border-radius: 100%;
+    vertical-align: middle;
+    margin-left: 0.15em;
+}
+.reveal section .browser__bullet:first-of-type {
+    margin-left: 0.75em;
+}
+
+.reveal section .bullet__red {background: #DF7065;}
+.reveal section .bullet__yellow {background: #E6BB46;}
+.reveal section .bullet__green {background: #5BCC8B;}
+
+.reveal section .browser__title {
+    background: #fff;
+    border-radius: 0.15em;
+    color: #333;
+    font-size: 60%;
+    margin-left: 1em;
+    padding: 0.5em 1.5em 0.15em;
+    vertical-align: middle;
+}
+.reveal section .browser__title .scheme {
+    color: #999;
+}
+.reveal section .browser__body {
+  background-color: #FFF;
+  font-size: 55%;
+}
+.reveal section .browser__body > * {
+  margin: 0;
+}
+
+/*-------(  )-----------------------------------------------------------------*/
+</style></head>
+<body class="reveal">
+  <img class="sponsor" src="./img//logo-takeaway.png" />
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+<!-- ======================================================================= -->
+<!--                               COVER                                     -->
+<!-- ======================================================================= -->
+<section  data-slide-section="cover slide" data-background-color="#4F2573">
+  <section>
+    <h1>Beyond everyday git</h1>
+    <h2>I didn't know git could do that!</h2>
+    <img class="no-border" src="/img/logo-today-beyond.png" />
+  </section>
+</section>
+<!-- ======================================================================= -->
+<!--                              OPENING                                    -->
+<!-- ======================================================================= -->
+<section data-slide-section="opening" data-background-color="#000">
+  <section>
+    <pre style="font-size: 70%;"><code>
+git config --global user.name "Ben Peachey"
+<span class="fragment fade-in-then-out">git config --global user.email "ben.peachey@takeaway.com"</span>
+<span class="fragment fade-in-then-out">git config --global user.email "jobs@takeaway.com"</span>
+    </code></pre>
+    <aside class="notes"></aside>
+  </section>
+</section>
+<!-- ======================================================================= -->
+<!--                            INTRODUCTION                                 -->
+<!-- ======================================================================= -->
+<section data-slide-section="git intro">
+  <section>
+    <h1>Git</h1>
+
+    <ul>
+      <li>First stable release : <code class="X-badge">2005</code></li>
+      <li>Current Version : <code class="X-badge version">v2.19.1</code></li>
+      <li>Contributors : <code class="X-badge">1233</code></li>
+      <li>License : <code class="X-badge license">GPLv2</code></li>
+    </ul>
+
+    <aside class="notes"></aside>
+  </section>
+
+  <section>
+    <h1>139 Git Commands</h1>
+
+    <ul class="command-list">
+      <li>add</li>
+      <li>am</li>
+      <li>annotate</li>
+      <li>apply</li>
+      <li>archimport</li>
+      <li>archive</li>
+      <li>bisect</li>
+      <li>blame</li>
+      <li>branch</li>
+      <li>bundle</li>
+      <li>cat-file</li>
+      <li>check-attr</li>
+      <li>check-ignore</li>
+      <li>check-mailmap</li>
+      <li>check-ref-format</li>
+      <li>checkout-index</li>
+      <li>checkout</li>
+      <li>cherry-pick</li>
+      <li>cherry</li>
+      <li>citool</li>
+      <li>clean</li>
+      <li>clone</li>
+      <li>column</li>
+      <li>commit-graph</li>
+      <li>commit-tree</li>
+      <li>commit</li>
+      <li>config</li>
+      <li>count-objects</li>
+      <li>credential-cache</li>
+      <li>credential-store</li>
+      <li>credential</li>
+      <li>cvsexportcommit</li>
+      <li>cvsimport</li>
+      <li>cvsserver</li>
+      <li>daemon</li>
+      <li>describe</li>
+      <li>diff-files</li>
+      <li>diff-index</li>
+      <li>diff-tree</li>
+      <li>diff</li>
+      <li>difftool</li>
+      <li>fast-export</li>
+      <li>fast-import</li>
+      <li>fetch-pack</li>
+      <li>fetch</li>
+      <li>filter-branch</li>
+      <li>fmt-merge-msg</li>
+      <li>for-each-ref</li>
+      <li>format-patch</li>
+      <li>fsck</li>
+      <li>gc</li>
+      <li>get-tar-commit-id</li>
+      <li>gitk</li>
+      <li>gitweb</li>
+      <li>grep</li>
+      <li>gui</li>
+      <li>hash-object</li>
+      <li>help</li>
+      <li>http-backend</li>
+      <li>http-fetch</li>
+      <li>http-push</li>
+      <li>imap-send</li>
+      <li>index-pack</li>
+      <li>init</li>
+      <li>instaweb</li>
+      <li>interpret-trailers</li>
+      <li>log</li>
+      <li>ls-files</li>
+      <li>ls-remote</li>
+      <li>ls-tree</li>
+      <li>mailinfo</li>
+      <li>mailsplit</li>
+      <li>merge-base</li>
+      <li>merge-file</li>
+      <li>merge-index</li>
+      <li>merge-one-file</li>
+      <li>merge-tree</li>
+      <li>merge</li>
+      <li>mergetool</li>
+      <li>mktag</li>
+      <li>mktree</li>
+      <li>mv</li>
+      <li>name-rev</li>
+      <li>notes</li>
+      <li>pack-objects</li>
+      <li>pack-redundant</li>
+      <li>pack-refs</li>
+      <li>parse-remote</li>
+      <li>patch-id</li>
+      <li>prune-packed</li>
+      <li>prune</li>
+      <li>pull</li>
+      <li>push</li>
+      <li>quiltimport</li>
+      <li>read-tree</li>
+      <li>rebase</li>
+      <li>receive-pack</li>
+      <li>reflog</li>
+      <li>remote</li>
+      <li>repack</li>
+      <li>replace</li>
+      <li>request-pull</li>
+      <li>rerere</li>
+      <li>reset</li>
+      <li>rev-list</li>
+      <li>rev-parse</li>
+      <li>revert</li>
+      <li>rm</li>
+      <li>send-email</li>
+      <li>send-pack</li>
+      <li>sh-i18n</li>
+      <li>sh-setup</li>
+      <li>shell</li>
+      <li>shortlog</li>
+      <li>show-branch</li>
+      <li>show-index</li>
+      <li>show-ref</li>
+      <li>show</li>
+      <li>stash</li>
+      <li>status</li>
+      <li>stripspace</li>
+      <li>submodule</li>
+      <li>svn</li>
+      <li>symbolic-ref</li>
+      <li>tag</li>
+      <li>unpack-file</li>
+      <li>unpack-objects</li>
+      <li>update-index</li>
+      <li>update-ref</li>
+      <li>update-server-info</li>
+      <li>upload-archive</li>
+      <li>upload-pack</li>
+      <li>var</li>
+      <li>verify-commit</li>
+      <li>verify-pack</li>
+      <li>verify-tag</li>
+      <li>whatchanged</li>
+      <li>worktree</li>
+      <li>write-tree</li>
+    </ul>
+    <aside class="notes"></aside>
+  </section>
+
+</section>
+<!-- ======================================================================= -->
+<!--                          A SIMPLE  EXAMPLE                              -->
+<!-- ======================================================================= -->
+<section data-slide-section="A simple example">
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>About this talk</h1>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>CLI Only</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <td></td>
+          <th>Linux</th>
+          <th>MacOS</th>
+          <th>Windows</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Popular</th>
+          <td>BASH</td>
+          <td>Terminal</td>
+          <td>PowerShell</td>
+        </tr>
+        <tr>
+          <th>Alternative</th>
+          <td>zsh</td>
+          <td>iTerm2</td>
+          <td>Git for Windows</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <aside class="notes">
+      This talk assumes you know how to use a shell.
+      All examples are CLI only. No UI here
+    </aside>
+  </section>
+
+
+  <section data-badge="v0.0.0" data-badge-class="version fragment fade-in">
+    <div class="fragment" data-badge="example" data-badge-class="example"></div>
+    <h1>Examples</h1>
+
+    <pre class="fragment"><code class="language-shell">
+  bash command
+</code></pre>
+
+    <pre  class="fragment example-config" data-badge="filename.ext" data-badge-position="tl"><code>
+  Content of the "filename.ext" file.
+</code></pre>
+
+    <p class="fragment example-command" data-badge="git command" data-badge-position="tl">
+      parameter(s) for git command
+    </p>
+
+    <a class="fragment manual-link">https://link.to/more#information</a>
+
+    <aside class="notes"></aside>
+  </section>
+
+  <section data-badge="v1.6.10" data-badge-class="version fragment fade-in">
+    <h1>An example</h1>
+
+    <pre><code class="language-shell">
+    git checkout <span class="fragment">-</span>
+    </code></pre>
+
+    <a class="fragment manual-link">https://git-scm.com/docs/git-checkout#git-checkout-ltbranchgt</a>
+
+    <aside class="notes">
+      @{-1} is a way to refer to the last branch you were on.
+      `git checkout -` is a shorthand for `git checkout @{-1}`.
+    </aside>
+  </section>
+
+</section>
+<!-- ======================================================================= -->
+<!--                            CONFIGURATION                                -->
+<!-- ======================================================================= -->
+<section data-slide-section="git config">
+  <section>
+    <h1>Config</h1>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example" data-badge-class="example">
+    <h1>Config</h1>
+
+    <pre><code class="language-shell">
+    git config --list --global
+<span class="fragment">
+    user.name=Ben Peachey
+    user.email=jobs@takeaway.com
+</span></code></pre>
+
+    <pre class="fragment"><code class="language-shell">
+    git config --edit
+    </code></pre>
+
+    <pre class="fragment example-config" data-badge="~/.gitconfig" data-badge-position="tl"><code>
+[user]
+    name = Ben Peachey
+    email = jobs@takeaway.com
+</code></pre>
+
+    <a class="manual-link">https://git-scm.com/docs/git-config</a>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="v1.7.10" data-badge-class="version">
+    <h1>Git config includes</h1>
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[include]
+        path = /path/to/foo.inc
+</code></pre>
+    <p class="example-command" data-badge="git config" data-badge-position="tl">
+      include.path /path/to/foo.inc
+    </p>
+    <a class="manual-link">https://git-scm.com/docs/git-config#_includes</a>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+    <h1>Git config includes</h1>
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[include]
+    path = ~/.gitconfig-alias
+    path = ~/.gitconfig-user
+</code></pre>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="v2.13.0" data-badge-class="version">
+    <h1>Conditional includes</h1>
+    <p>Include for all repositories inside <code>$HOME/to/group</code></p>
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[includeIf "gitdir:~/to/group/"]
+        path = /path/to/foo.inc
+</code></pre>
+    <p class="example-command" data-badge="git config" data-badge-position="tl">
+      includeIf.gitdir:~/to/group/ /path/to/foo.inc
+    </p>
+    <a class="manual-link">https://git-scm.com/docs/git-config#_includes</a>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- This setting has become the default
+  <section data-badge="v1.5.3" data-badge-class="version">
+    <h1>Auto track remote</h1>
+    <p class="cli-example" data-badge="git config" data-badge-position="tl">branch.autosetupmerge true</p>
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+      [branch]<br/>
+        autosetupmerge = true
+    </code></pre>
+    <a class="manual-link">https://git-scm.com/docs/git-config#git-config-branchautoSetupMerge</a>
+    <aside class="notes">
+      The valid settings are:
+      - false — no automatic setup is done;
+      - true — automatic setup is done when the starting point is a remote-tracking branch;
+      - always — automatic setup is done when the starting point is either a
+                 local branch or remote-tracking branch. This option defaults to true.
+    </aside>
+  </section>
+-->
+</section>
+<!-- ======================================================================= -->
+<!--                                HELP !!!                                 -->
+<!-- ======================================================================= -->
+<section data-slide-section="git help">
+  <section>
+    <h1>Help!</h1>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>git help</h1>
+
+    <pre><code class="language-shell">
+  git help
+
+</code></pre>
+    <a class="manual-link">https://git-scm.com/docs/git-help</a>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <pre class="example-command" data-badge="git help (1/2)" data-badge-position="tl"><code style="font-size: 80%; line-height: 100%;">
+usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
+           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
+           &lt;command&gt; [&lt;args&gt;]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <pre class="example-command" data-badge="git help (2/2)" data-badge-position="tl"><code style="font-size: 80%; line-height: 100%;"
+>   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help &lt;command&gt;' or 'git help &lt;concept&gt;'
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>But wait!<br> There's More!</h1>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <pre class="example-command" data-badge="git help --all (1/5)" data-badge-position="tl"><code style="font-size: 80%; line-height: 100%;">
+usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
+           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
+           &lt;command&gt; [&lt;args&gt;]
+
+available git commands in '/usr/lib/git-core'
+
+  add                       merge-one-file
+  add--interactive          merge-ours
+  am                        merge-recursive
+  annotate                  merge-resolve
+  apply                     merge-subtree
+  archive                   merge-tree
+  bisect                    mergetool
+  bisect--helper            mktag
+  blame                     mktree
+  branch                    mv
+  bundle                    mw
+  cat-file                  name-rev
+  check-attr                notes
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+<!-- ======================================================================= -->
+
+  <section>
+    <pre class="example-command" data-badge="git help --all (2/5)" data-badge-position="tl"><code style="font-size: 80%; line-height: 100%;"
+    >  check-ignore              pack-objects
+  check-mailmap             pack-redundant
+  check-ref-format          pack-refs
+  checkout                  patch-id
+  checkout-index            prune
+  cherry                    prune-packed
+  cherry-pick               pull
+  citool                    push
+  clean                     quiltimport
+  clone                     range-diff
+  column                    read-tree
+  commit                    rebase
+  commit-graph              rebase--helper
+  commit-tree               receive-pack
+  config                    reflog
+  count-objects             remote
+  credential                remote-ext
+  credential-cache          remote-fd
+  credential-cache--daemon  remote-ftp
+  credential-store          remote-ftps
+  cvsexportcommit           remote-http
+  cvsimport                 remote-https
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+<!-- ======================================================================= -->
+
+  <section>
+    <pre class="example-command" data-badge="git help --all (3/5)" data-badge-position="tl"><code style="font-size: 80%; line-height: 100%;"
+    >  cvsserver                 remote-mediawiki
+  daemon                    remote-testsvn
+  describe                  repack
+  diff                      replace
+  diff-files                request-pull
+  diff-index                rerere
+  diff-tree                 reset
+  difftool                  rev-list
+  difftool--helper          rev-parse
+  fast-export               revert
+  fast-import               rm
+  fetch                     send-email
+  fetch-pack                send-pack
+  filter-branch             serve
+  fmt-merge-msg             sh-i18n--envsubst
+  for-each-ref              shell
+  format-patch              shortlog
+  fsck                      show
+  fsck-objects              show-branch
+  gc                        show-index
+  get-tar-commit-id         show-ref
+  grep                      stage
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+<!-- ======================================================================= -->
+
+  <section>
+    <pre class="example-command" data-badge="git help --all (4/5)" data-badge-position="tl"><code style="font-size: 80%; line-height: 100%;"
+    >  gui                       stash
+  gui--askpass              status
+  hash-object               stripspace
+  help                      submodule
+  http-backend              submodule--helper
+  http-fetch                subtree
+  http-push                 svn
+  imap-send                 symbolic-ref
+  index-pack                tag
+  init                      unpack-file
+  init-db                   unpack-objects
+  instaweb                  update-index
+  interpret-trailers        update-ref
+  log                       update-server-info
+  ls-files                  upload-archive
+  ls-remote                 upload-pack
+  ls-tree                   var
+  mailinfo                  verify-commit
+  mailsplit                 verify-pack
+  merge                     verify-tag
+  merge-base                web--browse
+  merge-file                whatchanged
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+<!-- ======================================================================= -->
+
+  <section>
+    <pre class="example-command" data-badge="git help --all (5/5)" data-badge-position="tl"><code style="font-size: 80%; line-height: 100%;"
+    >  merge-index               worktree
+  merge-octopus             write-tree
+
+git commands available from elsewhere on your $PATH
+
+  cherry-copy   get-branch    is-current    out           pull-request
+  cherry-move   info          l             prompt
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help &gt;command&lt;' or 'git help &gt;concept&lt;'
+to read about a specific subcommand or concept.
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <pre class="example-command" data-badge="git help --guides" data-badge-position="tl"><code style="font-size: 80%; line-height: 100%;">
+The common Git guides are:
+   attributes          Defining attributes per path
+   cli                 Git command-line interface and conventions
+   core-tutorial       A Git core tutorial for developers
+   cvs-migration       Git for CVS users
+   diffcore            Tweaking diff output
+   everyday            A useful minimum set of commands for Everyday Git
+   glossary            A Git Glossary
+   hooks               Hooks used by Git
+   ignore              Specifies intentionally untracked files to ignore
+   modules             Defining submodule properties
+   namespaces          Git namespaces
+   repository-layout   Git Repository Layout
+   revisions           Specifying revisions and ranges for Git
+   tutorial            A tutorial introduction to Git
+   tutorial-2          A tutorial introduction to Git: part two
+   workflows           An overview of recommended workflows with Git
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help &gt;command&lt;' or 'git help &gt;concept&lt;'
+to read about a specific subcommand or concept.
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+
+    <h1>That's a lot of help</h1>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="v1.5.4" data-badge-class="version">
+
+    <h1 class="size-three-quarter">Open help in a browser<sup>*</sup></h1>
+
+    <p class="fragment" data-fragment-index="1">* Requires the git-doc package to be installed</p>
+
+    <pre><code class="language-shell">
+    git help <span class="fragment fade-in-then-semi-out" data-fragment-index="2">-</span>-w<span class="fragment fade-in-then-semi-out" data-fragment-index="2">eb</span>
+</code></pre>
+
+<span class="fragment"></span>
+    <a class="manual-link">https://git-scm.com/docs/git-help#_options</a>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example" data-badge-class="example">
+    <h1 class="size-three-quarter">Open help in a browser</h1>
+
+<div class="browser" data-badge="git help --help --web">
+    <div class="browser__head">
+        <span class="browser__bullet bullet__red"></span>
+        <span class="browser__bullet bullet__yellow"></span>
+        <span class="browser__bullet bullet__green"></span>
+        <span class="browser__title"><span class="scheme">file://</span>localhost/usr/share/doc/git/html/git.html</span>
+    </div>
+    <div class="browser__body"><pre style="background: #FEFEFE; color: #333;">
+
+    GIT-HELP(1)                                           Git Manual                                          GIT-HELP(1)
+
+
+
+    NAME
+           git-help - Display help information about Git
+
+    SYNOPSIS
+           git help [-a|--all] [-g|--guide]
+                      [-i|--info|-m|--man|-w|--web] [COMMAND|GUIDE]
+
+
+    DESCRIPTION
+           With no options and no COMMAND or GUIDE given, the synopsis of the git command and a list of the most commonly
+           used Git commands are printed on the standard output.
+
+           If the option --all or -a is given, all available commands are printed on the standard output.
+
+           If the option --guide or -g is given, a list of the useful Git guides is also printed on the standard output.
+
+           If a command, or a guide, is given, a manual page for that command or guide is brought up. The man program is
+           used by default for this purpose, but this can be overridden by other options or configuration variables.
+
+           Note that git --help ... is identical to git help ... because the former is internally converted into the
+           latter.
+
+           To display the git(1) man page, use git help git.
+
+           This page can be displayed with git help help or git help --help
+
+    OPTIONS
+           -a, --all
+               Prints all the available commands on the standard output. This option overrides any given command or guide
+               name.
+
+           -g, --guides
+               Prints a list of useful guides on the standard output. This option overrides any given command or guide
+               name.
+
+           -i, --info
+               Display manual page for the command in the info format. The info program will be used for that purpose.
+
+           -m, --man
+               Display manual page for the command in the man format. This option may be used to override a value set in
+               the help.format configuration variable.
+
+               By default the man program will be used to display the manual page, but the man.viewer configuration
+               variable may be used to choose other display programs (see below).
+
+           -w, --web
+               Display manual page for the command in the web (HTML) format. A web browser will be used for that purpose.
+
+               The web browser can be specified using the configuration variable help.browser, or web.browser if the
+               former is not set. If none of these config variables is set, the git web--browse helper script (called by
+               git help) will pick a suitable default. See git-web--browse(1) for more information about this.
+
+        </pre>
+    </div>
+</div>
+
+    <a class="manual-link"></a>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="v1.5.4" data-badge-class="version">
+    <h1 class="size-three-quarter">Always open help in a browser</h1>
+
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[help]
+        format = web
+</code></pre>
+
+    <p class="example-command" data-badge="git config --global" data-badge-position="tl">
+      help.format web
+    </p>
+
+    <a class="manual-link">https://git-scm.com/docs/git-config#git-config-helpformat</a>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="v1.5.4" data-badge-class="version">
+    <h1>Select a browser</h1>
+
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[help]
+        browser = firefox
+</code></pre>
+
+    <p class="example-command" data-badge="git config --global" data-badge-position="tl">
+      help.browser firefox
+    </p>
+
+    <a class="manual-link">https://git-scm.com/docs/git-config#git-config-helpbrowser</a>
+
+    <aside class="notes">
+      Specify the browser that will be used to display help in the web format.
+    </aside>
+  </section>
+
+</section>
+<!-- ======================================================================= -->
+<!--                              ALIASSES                                   -->
+<!-- ======================================================================= -->
+<section data-slide-section="git alias">
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Alias</h1>
+    <aside class="notes">
+      @TODO: mention https://git.wiki.kernel.org/index.php/Aliases (and others?)
+    </aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="v1.4.0" data-badge-class="version">
+
+    <h1>Git alias</h1>
+
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[alias]
+        name = command
+</code></pre>
+
+    <p class="cli-example" data-badge="git config" data-badge-position="tl">
+      alias.name command
+    </p>
+
+    <a class="manual-link">https://git-scm.com/docs/git-config#git-config-alias</a>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+    <h1>Git alias</h1>
+
+    <pre class="example-config" data-badge="~/.gitconfig" data-badge-position="tl"><code>
+[alias]
+        unstage = reset HEAD --
+</code></pre>
+    <p class="cli-example" data-badge="git config --global " data-badge-position="tl">
+      alias.unstage 'reset HEAD --'
+    </p>
+
+    <a class="manual-link">https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases</a>
+
+    <aside class="notes">
+      Any files added with "git add" can be "unstaged"
+      using "git reset HEAD --"; hence the alias.
+    </aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="v1.5.0" data-badge-class="version">
+    <h1 class="size-three-quarter">Shell command as alias</h1>
+    <blockquote cite="https://git-scm.com/docs/git-config#git-config-alias">
+      If the alias expansion is prefixed with an exclamation point, it will be treated as a shell command.
+    </blockquote>
+    <blockquote class="fragment size-three-quarter" style="width:100%" cite="https://git-scm.com/docs/git-config#git-config-alias">
+        Shell commands will be executed from the top-level directory of a repository, which may not necessarily be the current directory.
+    </blockquote>
+    <a class="manual-link">https://git-scm.com/docs/git-config#git-config-alias</a>
+    <aside class="notes">
+    </aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+    <h1 class="size-three-quarter">Shell command as alias</h1>
+    <pre><code class="language-shell">
+echo "Hello!"
+</code></pre>
+
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[alias]
+        hello = !echo "Hello!"
+</code></pre>
+
+    <p class="cli-example" data-badge="git config" data-badge-position="tl">
+      alias.hello '!echo "hello"'
+    </p>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+    <h1 class="size-three-quarter">Shell command as alias</h1>
+    <pre><code class="language-shell">
+git hello
+
+<span class="fragment">Hello!</span>
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-background-image="./img/yo-dawg-git-alias.jpg">
+    <img src="./img/yo-dawg-git-alias.jpg" class="size-double" />
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+    <h1 class="size-three-quarter">Shell command as alias</h1>
+    <pre><code class="language-shell">
+git config --list | grep 'alias.' | sort | cut -d= -f1
+</code></pre>
+
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[alias]
+      alias = !git config --list | grep 'alias.' | sort | cut -d'.' -f1,
+</code></pre>
+
+    <p class="cli-example" style="font-size: 50%;" data-badge="git config" data-badge-position="tl">
+      alias.alias '!git config --list | grep "alias." | sort | cut -d"." -f1,'
+    </p>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1 class="size-three-quarter">Shell command as alias</h1>
+    <pre><code class="language-shell">
+git alias
+
+<span class="fragment">
+alias.alias
+alias.hello
+alias.unstage
+</span></code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>
+      Don't use aliasses
+      <span class="fragment">for native functions</span>
+    </h1>
+    <h2 class="fragment">Use autocompletion instead</h2>
+    <aside class="notes"></aside>
+  </section>
+
+</section>
+<!-- ======================================================================= -->
+<!--                            AUTOCOMPLETE                                 -->
+<!-- ======================================================================= -->
+<section data-slide-section="git help">
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Auto Complete</h1>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Auto Complete</h1>
+
+    <pre><code class="language-shell" style="font-size: 90%;line-height: 1em;">
+git sta<span class="fragment">&lt;TAB&gt;</span>
+<span class="fragment">stage    stash    status
+
+git sta</span><span class="fragment">t</span><span class="fragment">&lt;TAB&gt;</span>
+
+<span class="fragment">git status</span> <span class="fragment">--</span><span class="fragment">&lt;TAB&gt;</span><span class="fragment">&lt;TAB&gt;
+--ahead-behind        --ignore-submodules   --no-renames          --short
+--branch              --ignored             --null                --show-stash
+--column              --long                --porcelain           --untracked-files
+--find-renames        --no-...              --renames             --verbose</span>
+
+<span class="fragment">git status --b</span><span class="fragment">&lt;TAB&gt;</span>
+<span class="fragment">git status --branch</span>
+
+<span class="fragment">[...]</span></code></pre>
+
+    <a class="manual-link"></a>
+
+    <aside class="notes"></aside>
+  </section>
+
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Auto Complete</h1>
+
+    <div class="browser">
+      <div class="browser__head">
+        <span class="browser__bullet bullet__red"></span>
+        <span class="browser__bullet bullet__yellow"></span>
+        <span class="browser__bullet bullet__green"></span>
+        <span class="browser__title"><span class="scheme">https://</span>stackoverflow.com/questions/12399002/how-to-configure-git-bash-command-line-completion</span>
+      </div>
+      <div class="browser__body">
+        <img style="margin:0 auto;" src="img/stackoverflow-git-autocomplete.png">
+      </div>
+    </div>
+https://stackoverflow.com/questions/12399002/how-to-configure-git-bash-command-line-completion
+    <aside class="notes"></aside>
+
+  </section>
+
+</section>
+<!-- ======================================================================= -->
+<!--                            AUTOCORRECT                                  -->
+<!-- ======================================================================= -->
+<section data-slide-section="git autocorrect">
+  <section>
+    <h1>Autocorrect</h1>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+    <h1>Git Suggestions</h1>
+    <pre><code class="language-shell">
+git meh
+
+git: 'meh' is not a git command. See 'git --help'.
+
+Did you mean one of these?
+        fetch
+        merge
+        shell
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="1.6.1" data-badge-class="version">
+    <h1>Git Autocorrect</h1>
+
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[help]
+        autocorrect = 35
+</code></pre>
+
+    <p class="example-command" data-badge="git config --global" data-badge-position="tl">
+      help.autoCorrect 35
+    </p>
+
+    <a class="manual-link">https://git-scm.com/docs/git-config#git-config-helpautoCorrect</a>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+    <h1>Git Autocorrect</h1>
+    <pre><code class="language-shell">
+git doh
+
+WARNING: You called a Git command named 'doh', which does not exist.
+Continuing under the assumption that you meant 'show'
+in 3.5 seconds automatically...
+
+<span class="fragment">[...]</span>
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Git Autocorrect</h1>
+
+    <blockquote cite="https://git-scm.com/docs/git-config#git-config-helpautoCorrect">
+      If the value of this option is negative, the corrected command will be executed immediately.
+    </blockquote>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+
+    <h1>Git Autocorrect</h1>
+
+    <pre><code class="language-shell">
+git doh
+
+WARNING: You called a Git command named 'doh', which does not exist.
+Continuing under the assumption that you meant 'show'
+
+<span class="fragment">[...]</span>
+</code></pre>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example" data-badge-class="example">
+    <h1>Git Autocorrect</h1>
+    <h2>With multiple options</h2>
+    <pre><code class="language-shell">
+git meh
+
+git: 'meh' is not a git command. See 'git --help'.
+
+Did you mean one of these?
+        fetch
+        merge
+        shell
+</code></pre>
+
+    <p class="fragment">Behaves just like normal suggestion...</p>
+
+    <aside class="notes">
+      ...ad is ignored by git.
+    </aside>
+  </section>
+
+
+</section>
+<!-- ======================================================================= -->
+<!--                            JUST IGNORE THIS                             -->
+<!-- ======================================================================= -->
+<section data-slide-section="git ignore">
+  <section>
+    <h1>Ignore This</h1>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="example">
+    <h1>Git ignore</h1>
+    <pre class="example-config" data-badge=".gitignore" data-badge-position="tl"><code>
+        IgnoredFolder/*
+        ignored-file.txt
+</code></pre>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Git ignore</h1>
+    <pre><code class="language-shell">
+    git status --ignored
+<span class="fragment">
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Ignored files:
+  (use "git add -f &lt;file&gt;..." to include in what will be committed)
+
+        IgnoredFolder/
+        ignored-file.txt
+
+nothing to commit, working tree clean
+</span>
+</code></pre>
+
+    <a class="manual-link">https://git-scm.com/docs/git-status#git-status---ignoredltmodegt</a>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="bad example" data-badge-class="example" data-badge-fg="red">
+    <h1>Git ignore</h1>
+    <pre class="example-config" data-badge=".gitignore" data-badge-position="tl">
+      <code style="font-size: 60%;line-height: 100%;" data-fragment-index="1" class="fragment strike">
+        ### IDE ###
+        nbbuild     # Netbeans
+        .idea/      # IntelliJ
+        .project    # Eclipse
+        .vscode/*   # VisualStudioCode
+
+        ### Linux ###
+        *~
+
+        ### macOS ###
+        .DS_Store
+        .AppleDouble
+        .LSOverride
+        ._*
+
+        ### Windows ###
+        Thumbs.db
+        [Dd]esktop.ini
+
+        <b>### WHO KNOWS WHAT ELSE ... ###</b>
+    </code></pre>
+    <h2 class="fragment" data-fragment-index="1">dont do this!</h2>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1 class="size-three-quarter">Three levels of ignorance</h1>
+    <p>Global / Repository / Local</p>
+    <img src="./img/git-ignore-01.svg" />
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1 class="size-three-quarter">Three levels of ignorance</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Global<br><small>Exclude File</small></th>
+      <th>Repository<br><small>Ignore File</small></th>
+      <th>Local<br><small>Exclude File</small></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>This machines only</td>
+      <td><s>This machines only</s></td>
+      <td>This machines only</td>
+    </tr>
+    <tr>
+      <td><s>This repo only</s></td>
+      <td>This repo only</td>
+      <td>This repo only</td>
+    </tr>
+    <tr>
+      <td><s>Committed</s></td>
+      <td>Committed</td>
+      <td><s>Committed</s></td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td><s>Configurable</s></td>
+      <td class="fragment semi-fade-out">Configurable</td>
+    </tr>
+  </tbody>
+</table>
+
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="" data-badge-class="version">
+    <h1>Global git ignore</h1>
+
+    <pre class="example-config" data-badge="~/.gitconfig" data-badge-position="tl"><code>
+[core]
+        excludesfile = ~/.gitignore
+</code></pre>
+    <p class="example-command" data-badge="git config --global" data-badge-position="tl">
+      core.excludesfile ~/.gitignore
+    </p>
+
+    <a class="manual-link">https://git-scm.com/docs/git-config/#git-config-coreexcludesFile</a>
+
+    <aside class="notes">
+      - It doesn't make sense to configure this --local. BUT YOU CAN.
+      - Remind them: DO NOT ADD AN ALIAS for `git ignore`.
+      Just use `echo 'file.ext' >> .gitignore` or an editor!
+    </aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1 class="size-three-quarter">Three levels of ignorance</h1>
+    <p>Global / Repository / Local</p>
+    <figure class="fragment-container">
+      <img class="no-border" src="./img/git-ignore-01.svg" />
+      <img class="no-border fragment" src="./img/git-ignore-02.svg" />
+    </figure>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>git ignore</h1>
+    <h2>Resources</h2>
+
+    <ul>
+      <li>
+        A collection of useful .gitignore templates<br>
+        <a>https://github.com/github/gitignore</a>
+      </li>
+      <li>
+        Create useful .gitignore files for your project<br>
+        <a>https://www.gitignore.io/</a>
+      </li>
+    </ul>
+    <aside class="notes"></aside>
+  </section>
+
+</section>
+<!-- ======================================================================= -->
+<!--                          WORKING WITH CHANGES                           -->
+<!-- ======================================================================= -->
+<section data-slide-section="working with changes">
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>What have I done!?</h1>
+    <aside class="notes"></aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Branch status</h1>
+
+    <pre><code class="language-shell">
+    git branch <span class="fragment fade-in-then-semi-out" data-fragment-index="1"
+    >-</span>-v<span class="fragment fade-in-then-semi-out" data-fragment-index="1"
+    >erbose </span>
+    <span class="fragment" data-fragment-index="2"></span>
+    <span class="fragment" data-fragment-index="3">
+* master  f44599481 [ahead 2] Last commit message on master.
+  develop 4563a0d9d [behind 35] The last commit message on develop.
+  other   260071fdb Last commit message of the other branch.
+    </span>
+</code></pre>
+
+    <p class="fragment" data-fragment-index="3">Shows which branches are ahead/behind</p>
+
+    <aside class="notes"></aside>
+
+  </section>
+
+<!-- ======================================================================= -->
+  <section data-badge="v1.7.0" data-badge-class="version">
+    <h1>Unpushed changes</h1>
+
+    <pre><code class="language-shell">
+    git log @{u<span class="fragment semi-fade-out">pstream</span>}..
+<span class="fragment">
+    commit f44599481cc692ed78b8f14db2c6b66671daaee2 (HEAD -> master)
+
+    [...]
+    </span></code></pre>
+
+    <aside class="notes">
+      If you push elsewhere than where you pull, use @{push}..
+      @{push} v2.5.0
+    </aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Unpushed changes</h1>
+    <h2>On all branches</h2>
+
+    <pre><code class="language-shell">
+    git log --branches --not --remotes
+
+  <span class="fragment">
+  commit f44599481cc692ed78b8f14db2c6b66671daaee2 (HEAD -> master)
+
+  [...]
+
+  commit 58c6697c7cd38bbc246e18496d23a08cc6e02ef8 (other)
+
+  [...]
+
+  </span></code></pre>
+
+    <aside class="notes">
+    </aside>
+  </section>
+
+<!-- ======================================================================= -->
+  <section>
+    <h1>Unpushed changes</h1>
+    <h2>On all branches</h2>
+
+    <pre class="example-config" data-badge=".gitconfig" data-badge-position="tl"><code>
+[alias]
+            unpushed = log --branches --not --remotes
+</code></pre>
+
+    <p class="cli-example" data-badge="git config" data-badge-position="tl">
+      alias.unpushed 'log --branches --not --remotes'
+    </p>
+
+    <aside class="notes"></aside>
+  </section>
+
+</section>
+<!-- ======================================================================= -->
+<!--                                CLOSING                                  -->
+<!-- ======================================================================= -->
+<section data-slide-section="Closing">
+<!--  <section>
+    <p data-badge="@TODO">
+    Add "That's all folks" codepen by https://twitter.com/kath_saz
+      https://codepen.io/kathleen-saz/pen/myDrF
+    </p>
+
+    <aside class="notes"></aside>
+  </section>
+-->
+  <section data-background-color="rgb(140, 200, 75)"
+  data-background-image	="./img/question-icon-by-Krisada-from-the-noun-project.png">
+    <aside class="notes">
+        So... any questions?
+    </aside>
+  </section>
+  <section class="credits">
+    <h1>Sources: </h1>
+    <ul>
+      <li>Slideshow made with <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
+      <li>
+        <a href="http://TheNounProject.com/term/question/28727/">Question icon </a>
+      by <a href="https://thenounproject.com/Krisada/">Krisada from The Noun Project</a> licensed under Creative Commons Attribution</li>
+    </ul>
+    <aside class="notes">
+      Credit where it is due
+    </aside>
+  </section>
+</section>
+  </div><!-- /slides -->
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+  <script>
+  /* global Reveal, hljs */
+    let talkDuration = 40; // minutes
+    let defaultTiming = talkDuration * 60 / document.querySelectorAll('.slides section').length
+    let allottedTime = talkDuration * 60 * 1000;
+
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      // autoPlayMedia: null, // Media will only autoplay if data-autoplay is present
+      center: true,
+      controls: true,
+      defaultTiming: defaultTiming, // number of seconds per slide @TODO: Add calcualtion for (allottedTime / slide count)
+      fragmentInURL: true,
+      history: true,
+      pdfSeparateFragments: false, // print all fragments in their visible states on the same slide
+      pdfMaxPagesPerSlide: 1, // ensures no slide grows to more than one printed page
+      progress: true,
+      slideNumber: 'c/t', // h.v, h/v, c or c/t
+      showSlideNumber: 'speaker',
+      transition: 'slide',
+
+      // elapsed-time-bar
+      allottedTime: allottedTime,
+      barColor: 'rgb(101, 123, 131)',
+      pausedBarColor: 'rgb(101, 123, 131, 0.6)',
+      progressBarHeight: 4,
+
+      // badges
+        badges: {
+          languages: {
+            shell: {
+              label: 'bash',
+              fg: 'white',
+              bg: '#3BAC48',
+              position: 'tr'
+            }
+          }
+        },
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+        // Cross-browser shim for classList
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        // Syntax highlight for <code> elements
+        // { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/search/search.js', async: true },
+        // Zoom in and out with Alt+click
+        //{ src: 'plugin/zoom-js/zoom.js', async: true },
+        // Speaker notes
+        { src: 'plugin/notes/notes.js', async: true },
+        // Progress bar of elapsed time
+        { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'},
+        //
+        { src: 'plugin/reveal-badges/badges.js' }
+      ]
+    });
+  </script>
+</body>
+</html>

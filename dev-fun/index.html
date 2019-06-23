@@ -1,172 +1,1906 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 
-    <title>/dev/fun</title>
+  <title></title>
 
-    <!-- This presentation makes use of http://www.w3.org/Talks/Tools/Slidy/ -->
-    <!-- Slidy styles and functionality -->
-    <link href="../_/slidy/slidy.css"       rel="stylesheet" type="text/css" media="all"  />
-    <link href="../_/slidy/w3c-blue2.css"   rel="stylesheet" type="text/css" media="all" />
-    <script src="../_/slidy/slidy.js" charset="utf-8" type="text/javascript"></script>
+  <meta name="description" content="">
+  <meta name="author" content="potherca">
 
-    <!-- General customizations of Slidy -->
-    <link href="../_/CustomSlideStyle.css"  rel="stylesheet" type="text/css" media="all" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Customizations of Slidy for this specific slideshow-->
-    <link rel="stylesheet" href="slidy.css" type="text/css" media="all"  />
-    <link rel="stylesheet" href="../_/Font-Awesome/css/font-awesome.css" type="text/css" media="all"  />
-    <!--[if lt IE 9]><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><style>
+/* Styles specific to this talk */
+
+/*=======( On All Slides )====================================================*/
+  .sponsor {
+    z-index: 100;
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 10%;
+  }
+/*=======( Specific Slides )==================================================*/
+
+/*-------( takeaway shown )---------------------------------------------------*/
+.takeaway-shown .sponsor {
+  display: none;
+}
+/*-------( Big Fat Siren )----------------------------------------------------*/
+.big-fat-siren li {
+  text-shadow: 1px 1px 0 black,
+    -1px -1px 0 black,
+    -1px 1px 0 black,
+    1px -1px 0 black
+  ;
+}
+/*-------( Fun Mindset )------------------------------------------------------*/
+
+.fun-mindset tbody th {
+  text-align: center;
+}
+
+.fun-mindset tbody td {
+  border-color: rgba(100%, 100%, 100%, 0.2);
+}
+
+/*-------( Test Runners )-----------------------------------------------------*/
+.nyan-cat-test-runner {
+  color:#666;
+}
+
+.nyan-cat-test-runner th {
+  text-align:right;
+  white-space:nowrap;
+}
+
+/*-------( Observences )-----------------------------------------------------*/
+
+  .observences td {
+    border: 1px solid !important;
+    text-align: center !important;
+  }
+/*-------( What is work )-----------------------------------------------------*/
+
+  .reveal .work-example-badge {
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 4px rgba(0, 0,0, 0.5);
+    color: #FFFFFF;
+    font-family: sans-serif;
+    font-weight: bold;
+    line-height: 1em;
+    margin: 1em auto;
+    padding: 6px 10px;
+    width: 5em;
+  }
+
+  .work-badges p {
+    font-size: 70%;
+    min-height: 3em;
+    background: rgba(100%, 100%, 100%, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5em;
+  }
 
 
-    <!-- JS Mindmap -->
-    <link rel="stylesheet" href="../_/js-mindmap/js-mindmap.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="../_/js-mindmap/js-mindmap.js"></script>
+  /*-------( Nyan Cat )-------------------------------------------------------*/
+  .nyancat-slide {
+    height: 80%;
+  }
 
-    <!--
-    PREPARATION:
-        If you find it difficult to think up a decent slideshow, http://www.w3.org/QA/2008/09/slideshow-must-go-on.html
-        has some good tips and pointers to get you started and help you along.
+  .nyancat-slide div {
+    filter:blur(1px);
+  }
 
-    DEVELOPMENT:
-        - add class="outline" to collapse lists and class="expand" to expand collapsed list items
-        - add class="incremental" to a any item to make it's display incremental
-        - add class="non-incremental" to any item to exclude it from incremental display
-        - add <div class="handout"> to hide information in slideshow-mode
+/*=======( Specific elements )================================================*/
 
-    OPERATION:
-        * Works across browsers and is operated like PowerPoint
-        * Advance to next slide with mouse click or space bar
-        * Move forward/backward between slides with Cursor Left, Cursor Right, Pg Up and Pg Dn keys
-        * Home key for first slide, End key for last slide
-        * The "C" key for an automatically generated table of contents (or click on "contents" on the toolbar)
-        * Function F11 to go full screen and back
-        * The "F" key toggles the display of the footer
-        * The "A" key toggles display of current vs all slides
-        * Use the "A" key when you want to view or print all slides
-        * Font sizes automatically adapt to browser window size
-        * use S and B keys for manual control (or < and >, or the - and + keys on the number pad
-        * See also the use of the meta element for adjusting the default Slidy behavior
+/*-------( Badges )-----------------------------------------------------------*/
 
-    FIXME:
-        - Lower versions of IE are not supported (do we want to or just display the content *sans* slidy?)
-        - Our fullscreen CSS breaks when "all slides" mode is enabled
-        - (This slideshow only:) CSS of the cover slide breaks when "all slides" mode is enabled
-    TODO:
-        - make .handout available on things other than div's
-        - make it possible to hide slides from printing
-    -->
+  /* Brewer pastel15 color scheme */
+  [data-badge="Discover"] .badge,
+  .data-badge-discover {
+    background-color: #DECBE4;
+  }
 
-    <!-- Following line is displayed in the footer -->
-    <meta name="copyright" content="Copyright &#169; 2012 B.M. Peachey" />
+  [data-badge="Define"] .badge,
+  .data-badge-define {
+    background-color: #B3CDE3;
+  }
 
-    <!-- Following line will add a counter (in minutes) to the footer-->
-    <meta name="duration" content="45" />
+  [data-badge="Develop"] .badge,
+  .data-badge-develop {
+    background-color: #FED9A6;
+  }
 
-    <!-- Following line allows you to adjust the font size -->
-    <meta name="font-size-adjustment" content="-1" />
+  [data-badge="Deliver"] .badge,
+  .data-badge-deliver {
+    background-color: #CCEBC5;
+  }
 
-    <!-- <a href="/#(5)">Link to slide nr.5.</a> -->
-    <!-- <div class="handout">Some text for in the handout, will not appear in the slideshow.</div> -->
+  [data-badge="Destroy"] .badge,
+  .data-badge-destroy {
+    background-color: #FBB4AE;
+  }
 
-</head>
+/*-------(  )-----------------------------------------------------------------*/
 
-<body class="">
+  .reveal section .fragment-container {
+    position: relative;
+  }
+
+  .reveal section .fragment-container .fragment {
+    position: absolute;
+    top: -2px;
+    left: 20px;
+  }
+
+  .reveal section blockquote {
+    color:#666;
+    background: #EEE;
+    padding: 1em;
+    border-radius: 5px;
+  }
+
+  .reveal section thead th {
+    text-align: center;
+  }
+
+  .reveal section td {
+    white-space: nowrap;
+  }
+
+  .reveal section s {
+    text-decoration-color: red;
+    opacity: 0.4;
+  }
+
+  .reveal section blockquote::before {
+    content: '“';
+  }
+
+  .reveal section blockquote::after {
+    content: '”';
+  }
+
+  .reveal section .bottom-link {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    border: 1px solid white;
+    cursor: pointer;
+    font-size: 60%;
+    padding: 0.2em 0.4em;
+    white-space: nowrap;
+  }
+
+  .reveal section pre {
+    width: 100%;
+    background-color: #000;
+  }
+
+/*=======( Helper classes )===================================================*/
+
+  .reveal section img.no-border { background:none; border:none; box-shadow:none; }
+
+  .reveal section .unimportant {
+    opacity: 0.5;
+  }
+
+  .reveal section .size-double {
+    transform: scale(1.5) translate(0%, 25%);
+    width: 50%;
+  }
+
+  .reveal section .size-three-quarter,
+  .reveal section .size-three-quarters {
+    transform: scale(0.75) translate(-25%);
+    width: 150%;
+  }
+
+  .reveal section .size-half,
+  .reveal section .size-two-quarter,
+  .reveal section .size-two-quarters {
+    transform: scale(0.5) translate(-50%);
+    width: 200%;
+  }
+
+  .reveal section .size-one-quarter,
+  .reveal section .size-quarter {
+    transform: scale(0.25) translate(-150%);
+    width: 400%;
+  }
+
+/*=======( Browser )==========================================================*/
+.reveal section .browser {
+  border:0.075em solid rgb(195, 195, 195);
+  border-radius: 0.25em;
+  box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
+  text-align: left;
+  vertical-align: top;
+}
+
+.reveal section .browser__head {
+  background: #E8E8E8;
+  border-radius: 0.15em 0.15em 0 0;
+  font-size: 60%;
+  height: 1.5em;
+}
+
+.reveal section .browser__bullet {
+    height: 0.75em;
+    width: 0.75em;
+    display: inline-block;
+    background: #ccc;
+    border-radius: 100%;
+    vertical-align: middle;
+    margin-left: 0.15em;
+}
+.reveal section .browser__bullet:first-of-type {
+    margin-left: 0.75em;
+}
+
+.reveal section .bullet__red {background: #DF7065;}
+.reveal section .bullet__yellow {background: #E6BB46;}
+.reveal section .bullet__green {background: #5BCC8B;}
+
+.reveal section .browser__title {
+    background: #fff;
+    border-radius: 0.15em;
+    color: #333;
+    font-size: 60%;
+    margin-left: 1em;
+    padding: 0.5em 1.5em 0.15em;
+    vertical-align: middle;
+}
+.reveal section .browser__title .scheme {
+    color: #999;
+}
+.reveal section .browser__body {
+  background-color: #FFF;
+  font-size: 55%;
+}
+.reveal section .browser__body > * {
+  margin: 0;
+}
+
+/*-------(  )-----------------------------------------------------------------*/
+</style></head>
+<body class="reveal">
+  <img class="sponsor" src="img/logo-takeaway.png" />
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
 <!-- ======================================================================= -->
-<!--                            HEAD BANNER                                  -->
+<!--                               COVER                                     -->
 <!-- ======================================================================= -->
-<div class="background">
-    <img src="../_/img/potherca_southpark_head.png" id="head-icon" />
-</div>
+<section  data-slide-section="cover slide" data-background-color="#4F2573">
+  <section>
+    <h1><code>/dev/fun</code></h1>
+    <h2>Tools, techniques and tips to make your work more fun</h2>
+    <img class="no-border" src="img/logo-today-beyond.png" />
+  </section>
+</section>
+<!-- ======================================================================= -->
+<!--                              OPENING                                    -->
+<!-- ======================================================================= -->
+<section data-slide-section="opening" data-background-color="">
+  <section>
+    <h1>about me</h1>
+  </section>
 
+  <section>
+    <h1>Ben Peachey</h1>
+    <p class="fragment">Creating software since 1985</p>
+    <p class="fragment size-half">When I was 8 years old</p>
+  </section>
 
-<!-- ======================================================================= -->
-<!--                             WHO AM I                                    -->
-<!-- ======================================================================= -->
-<div class="slide">
-    <h1 class="non-incremental">Who am I?</h1>
-    <h2>Ben Peachey / Potherca</h2>
-    <ul>
-        <li>
-            Kick-Ass Web Developer
-        </li>
-        <!--<li>-->
-        <!--Founder of PHPTwente-->
-        <!--</li>-->
+  <section data-background="#ff8800" data-state="takeaway-shown">
+    <img class="no-border stretch" src="img/logo-takeaway.png" />
+  </section>
+
+  <section>
+    <h1>Job Titles</h1>
+    <ul class="fragment">
+      <li>Senior Programmer</li>
+      <li>Senior Software Developer</li>
+      <li>Senior Software Engineer</li>
+      <li>Senior Web Developer</li>
     </ul>
-</div>
+    <p class="fragment size-half">And that's just the last 10 years</p>
+  </section>
 
+  <section>
+    <h1>Kick-ass Web Developer</h1>
+    <img class="fragment fadein" src="img/contract.jpg"></img>
+  </section>
 
+  <section>
+    <h1>Potherca</h1>
+    <ul class="fragment">
+      <li><span class="unimportant">https://twitter.com/</span>potherca</li>
+      <li><span class="unimportant">https://github.com/</span>potherca</li>
+      <li>potherca<span class="unimportant">@gmail.com</span></li>
+      <li>https://pother.ca</li>
+    </ul>
+  </section>
+
+  <section>
+    <h1 class="size-three-quarter">https://pother.ca/fun</h1>
+    <p class="fragment size-three-quarter">
+      Don't worry, I'll show this link again at the end of my talk
+    </p>
+  </section>
+
+  <section></section>
+</section>
 <!-- ======================================================================= -->
-<!--                          OPENING COVER                                  -->
+<!--                                                                         -->
 <!-- ======================================================================= -->
-<div class="slide cover front-cover">
-    <div>
-        <h3>/dev/fun</h3>
-        <p>All work and no play makes development #$%@ boring</p>
+<section data-slide-section="git intro">
+  <section>
+    <h1>What is Fun?</h1>
+    <aside class="notes"></aside>
+  </section>
+
+  <section data-background-color="#E8EAEE">
+    <img class="stretch" src="img/definition-of-fun.png"/>
+    <a class="bottom-link">https://www.lexico.com/en/definition/fun</a>
+  </section>
+
+  <section>
+    <blockquote>
+      Fun is an experience often unexpected, informal or purposeless. It is an
+      enjoyable distraction, diverting the mind and body from any serious task
+      or contributing an extra dimension to it.
+    </blockquote>
+    <a class="bottom-link">https://en.wikipedia.org/wiki/Fun</a>
+  </section>
+
+  <section>
+    <h1>Fun is... <span class="fragment">Fun!</span></h1>
+    <ul>
+      <li>Amusement</li>
+      <li>Enjoyment</li>
+      <li>Good humour</li>
+      <li>Light-hearted pleasure</li>
+      <li>Playfulness</li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>Why is fun important?</h1>
+    <h2 class="fragment">(You should already know this)</h2>
+  </section>
+
+  <section>
+    <div class="thumbnails" style="
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1em;
+    row-gap: 1em;
+
+    ">
+      <img class="-fragment" src="img/ted-talks/A&#32;manifesto&#32;for&#32;play.png" />
+      <img class="-fragment" src="img/ted-talks/Evolutions&#32;gift&#32;of&#32;play.png" />
+      <img class="-fragment" src="img/ted-talks/Play&#32;&#32;Experiment&#32;&#32;Discover.png" />
+      <img class="-fragment" src="img/ted-talks/Play&#32;is&#32;more&#32;than&#32;just&#32;fun.png" />
+      <img class="-fragment" src="img/ted-talks/Tales&#32;of&#32;creativity&#32;and&#32;play.png" />
+      <img class="-fragment" src="img/ted-talks/The&#32;shared&#32;experience&#32;of&#32;absurdity.png" />
     </div>
-</div>
 
+    <aside class="notes">
+      Play is more than just fun - Stuart Brown | Serious Play 2008
+      Evolution's gift of play, from bonobo apes to humans - Isabel Behncke | TED2011
+      Tales of creativity and play - Tim Brown | Serious Play 2008
+      The shared experience of absurdity - Charlie Todd | TEDxBloomington
+      A manifesto for play, for Bulgaria and beyond - Steve Keil | TEDxBG
+      Play! Experiment! Discover! - Kary Mullis | TED2002
+
+      https://www.ted.com/talks/stuart_brown_says_play_is_more_than_fun_it_s_vital
+      https://www.ted.com/talks/isabel_behncke_evolution_s_gift_of_play_from_bonobo_apes_to_humans
+      https://www.ted.com/talks/tim_brown_on_creativity_and_play
+      https://www.ted.com/talks/charlie_todd_the_shared_experience_of_absurdity
+      https://www.ted.com/talks/steve_keil_a_manifesto_for_play_for_bulgaria_and_beyond
+      https://www.ted.com/talks/kary_mullis_on_what_scientists_do
+    </aside>
+  </section>
+
+  <section>
+    <h1>
+      How do we have fun<br>
+      (in general)
+    </h1>
+  </section>
+
+  <section data-background-color="#FFF">
+    <img class="stretch" src="img/things-we-find-fun.png"></img>
+    <a class="bottom-link">http://rave.ohiolink.edu/etdc/view?acc_num=osu1280119375</a>
+  </section>
+
+  <section>
+    <h1>
+      How do we have fun<br>
+      (as developers)
+    </h1>
+  </section>
+
+  <section>
+    <ul>
+        <li>Adulation of One's Peers</li>
+        <li>Creativity</li>
+        <li>Deep Concentration ("flow")</li>
+        <li>Getting From It What You Put Into It</li>
+        <li>Getting stuff done</li>
+        <li>Learning How Stuff Works</li>
+        <li>Learning New Things</li>
+        <li>Model Building</li>
+        <li>Power</li>
+        <li>Puzzle-Solving</li>
+        <li>Seeing One's Creations Live On</li>
+    </ul>
+    <a class="bottom-link">http://wiki.c2.com/?ProgrammingIsFun</a>
+  </section>
+
+
+  <section></section>
+</section>
 <!-- ======================================================================= -->
-<!--                          ALL WORK AND NO PLAY                           -->
+<!--                                                                         -->
 <!-- ======================================================================= -->
-<div class="slide hide_in_print">
-    <h1 class="non-incremental">All work and no play</h1>
-    <img class="fullscreen" src="img/all_work_and_no_play____by_cdemi.jpg" alt="All work and no play makes Jack a dull boy!" />
-</div>
+<section data-slide-section="">
+  <section>
+    <h1>Fun is personal</h1>
+    <p class="fragment">Different players = Different player types</p>
+  </section>
 
+  <section>
+    <h1>Player Types</h1>
+  </section>
+
+  <section>
+    <h1>
+      <span style="font-size:50%;">According to</span>
+      Bartle
+    </h1>
+    <ul>
+      <li>Achiever (Planner, Opportunist)</li>
+      <li>Explorer (Scientist, Hacker)</li>
+      <li>Socialisers (Networker, Friend)</li>
+      <li>Killers (Politician/"Den Mothers", Griefer)</li>
+    </ul>
+    <p>
+      <a class="bottom-link">https://matthewbarr.co.uk/bartle/</a>
+    </p>
+  </section>
+
+  <section>
+    <h1>
+      <span style="font-size:50%;">According to</span>
+      Marczewski
+    </h1>
+    <ul>
+      <li>Achiever</li>
+      <li>Disruptor</li>
+      <li>Free Spirit</li>
+      <li>Philanthropist</li>
+      <li>Player</li>
+      <li>Socialiser</li>
+    </ul>
+
+    <p>
+      <a class="bottom-link">https://gamified.uk/UserTypeTest2015/user-type-test.php</a>
+    </p>
+  </section>
+
+  <section>
+    <h1>
+      So...
+      <span class="fragment">
+        let people make their own fun
+      </span>
+    </h1>
+  </section>
+
+  <section data-background="#FFF">
+    <img class="stretch no-border" src="img/no-entry.gif" />
+  </section>
+
+  <section>
+    <img src="img/dilbert-fun-consultant.gif" />
+    <img src="img/dilbert-fun-commitee.gif" />
+  </section>
+
+  <section></section>
+</section>
 <!-- ======================================================================= -->
-<!--                          PLAY IS IMPORTANT                              -->
+<!--                                                                         -->
 <!-- ======================================================================= -->
-<div class="slide hide_in_print play_important">
-    <h1>Why is play important?</h1>
-    <h2>Just ask these guys...</h2>
-    <a href="https://www.ted.com/talks/stuart_brown_says_play_is_more_than_fun_it_s_vital.html"
-            >Stuart Brown: Play is more than fun</a>
-    <iframe src="https://embed.ted.com/talks/stuart_brown_says_play_is_more_than_fun_it_s_vital.html" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+<section data-slide-section="what-is-work">
+  <section>
+    <h1>What is work?</h1>
 
-    <a href="https://www.ted.com/talks/tim_brown_on_creativity_and_play.html"
-            >Tim Brown: Tales of creativity and play</a>
-    <iframe src="https://embed.ted.com/talks/tim_brown_on_creativity_and_play.html" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    <aside class="notes">
+      When I talk about work, I'm talking about software development.
+    </aside>
+  </section>
 
+  <section>
+    <p class="work-example-badge data-badge-discover">Discover</p>
+    <p class="work-example-badge data-badge-define">Define</p>
+    <p class="work-example-badge data-badge-develop">Develop</p>
+    <p class="work-example-badge data-badge-deliver">Deliver</p>
+    <p class="work-example-badge data-badge-destroy">Destroy</p>
+  </section>
 
-    <a href="https://www.ted.com/talks/steve_keil_a_manifesto_for_play_for_bulgaria_and_beyond.html"
-            >Steve Keil: A manifesto for play, for Bulgaria and beyond</a>
-    <iframe src="https://embed.ted.com/talks/steve_keil_a_manifesto_for_play_for_bulgaria_and_beyond.html" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-</div>
+  <section class="work-badges">
+    <h1></h1>
 
+    <p class="" data-badge-bg="#DECBE4" data-badge="Discover">
+      Discover, Identification of need, Concept, Learn, Study, Experiment, Research
+    </p>
+
+    <p class="" data-badge-bg="#B3CDE3" data-badge="Define">
+      Define, Decide, Design, Detail, Requirements, Planning
+    </p>
+
+    <p class="" data-badge-bg="#FED9A6" data-badge="Develop">
+      Develop, Coding, Unit/Integration Testing, Debugging, Documenting
+    </p>
+
+    <p class="" data-badge-bg="#CCEBC5" data-badge="Deliver">
+      Deliver, Software quality, Deployment, Maintenance
+    </p>
+
+    <p class="" data-badge-bg="#FBB4AE" data-badge="Destroy">
+      Deprecate, Destroy, Dispose
+    </p>
+
+    <aside class="notes">
+    </aside>
+  </section>
+
+</section>
 <!-- ======================================================================= -->
-<!--                                FLOW                                     -->
+<!--                                                                         -->
 <!-- ======================================================================= -->
-<div class="slide hide_in_print">
-    <h1 class="non-incremental">Play is Important</h1>
-    <img class="fullscreen" src="img/flow-diagram.jpg" alt="" />
-</div>
+<section data-slide-section="">
+  <section>
+    <h1>
+      But...
+      <span class="fragment">Should I have Fun at work?</span>
+    </h1>
+    <aside class="notes">
+      I think you might already know the answer to this one...
+    </aside>
+  </section>
 
+  <section>
+    <h1 style="font-size: 20em; line-height: 0.8;">YES</h1>
+  </section>
 
+  <section>
+    <h1>People who have fun are happier</h1>
+  </section>
+
+  <section>
+    <h1>Happy people</h1>
+    <ul>
+      <li class="fragment">Work harder</li>
+      <li class="fragment">Less sick leave</li>
+      <li class="fragment">More productive</li>
+    </ul>
+
+    <aside class="notes">
+      Don't take my word for it... read the research!
+    </aside>
+
+  </section>
+
+  <section></section>
+</section>
 <!-- ======================================================================= -->
-<!--                               MINDMAP                                   -->
+<!--                                                                         -->
 <!-- ======================================================================= -->
+<section data-slide-section="">
+  <section>
+    <h1>
+      Examples of Fun<br>
+      <span class="fragment">I 've had</span>
+    </h1>
 
-<div class="slide non-incremental mindmap">
-    <h1>How to have more fun?</h1>
-    <iframe src="mindmap.html" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    <!--<a href="mindmap.html"><img src="img/mindmap.png"/></a>-->
-</div>
+    <p class="fragment">
+      Y<span class="unimportant">our</span>
+      M<span class="unimportant">ilage</span>
+      M<span class="unimportant">ay</span>
+      V<span class="unimportant">ary</span>
+    </p>
+    <aside class="notes">
+    </aside>
+  </section>
+
+  <section>
+    <h1>Celebrate</h1>
+  </section>
+
+  <section data-background-color="#7CCCC9">
+    <img src="img/SysAdminDay.jpg" class="no-border" />
+    <h2 class="fragment">July 26, 2019</h2>
+    <a class="bottom-link" style="color: white;">https://sysadminday.com/</a>
+  </section>
+
+  <section class="observences">
+    <table>
+      <tr>
+        <td>Beer Day</td>
+        <td>CAPS LOCK DAY</td>
+        <td>Chocolate Day</td>
+      </tr>
+      <tr>
+        <td>Cinnamon Roll day</td>
+        <td>Coffee Day</td>
+        <td>Corndog Day</td>
+      </tr>
+      <tr>
+        <td>Day of the Nacho</td>
+        <td>Donut Day</td>
+        <td>Emoji Day</td>
+      </tr>
+      <tr>
+        <td>Hobbit Day</td>
+        <td>Mario Day</td>
+        <td>Pancake Day</td>
+      </tr>
+      <tr>
+        <td>Star Wars Day</td>
+        <td>Talk Like a Pirate Day</td>
+        <td>Tea Day</td>
+      </tr>
+      <tr>
+        <td>Towel Day</td>
+        <td>Vodka Day</td>
+        <td>Wikipedia Day</td>
+      </tr>
+    </table>
+
+    <a class="bottom-link">https://en.wikipedia.org/wiki/List_of_minor_secular_observances</a>
+
+    <aside class="notes">
+      January 15	Wikipedia Day
+      March 10	Mario Day
+      July 17	Emoji Day (World)
+      October 22 (also June 28)	CAPS LOCK DAY
+
+      June 24	Take Your Dog to Work Day
+      June 18	Autistic Pride Day
+      March 14	Pi Day
+      April 11	Louie Louie Day
+
+      February (first Saturday)	Ice Cream for Breakfast Day
+      February 5	Nutella Day
+      February 27	Pancake Day
+      March (first Saturday) Corndog Day
+
+      June (First Friday)	Donut Day
+      July 7	Chocolate Day
+      October 4	Cinnamon roll day
+      October 21	Day of the Nacho
+      November 1	Vegan Day
+
+      May 4	Star Wars Day
+      May 25	Towel Day
+      September 22	Hobbit Day
+
+      September 29	Coffee Day
+      December 15 Tea Day
+      October 4   Vodka Day
+      August (1st Friday) Beer Day
+    </aside>
+  </section>
+
+  <section>
+    <h1>Poke Fun at</h1>
+  </section>
+
+  <section>
+    <img class="stretch" src="img/works-on-my-machine.jpg" />
+  </section>
+
+  <section>
+    <h1>Play Games</h1>
+  </section>
+
+  <section>
+    <img src="img/company-nerf-gun.jpg" />
+  </section>
+
+  <section>
+    <h1>Word of the day</h1>
+  </section>
+
+  <section data-background-color="#F8F8F8">
+    <img src="img/slack-emoji-song-quiz.png" />
+    <a class="fragment bottom-link">https://www.emoji-songs.com/en/songs/</a>
+  </section>
 
 
+  <section>
+    <h1>Share</h1>
+  </section>
+
+  <section>
+    <div class="fragment-container stretch">
+      <img style="top: initial;margin: 0.5em;left: initial;z-index:1;" class="fragment no-border" src="img/developer-in-the-sun-tweet.png" />
+      <img class="no-border" style="filter:blur(4px)" src="img/developer-in-the-sun.jpg" />
+    </div>
+  </section>
+
+  <section>
+    <h1>Ignore the haters</h1>
+  </section>
+
+  <section>
+      <img class="stretch no-border" src="img/jackass-whisperer.jpg" />
+  </section>
+
+  <section></section>
+</section>
 <!-- ======================================================================= -->
-<!--                          CLOSING COVER                                  -->
+<!--                                                                         -->
 <!-- ======================================================================= -->
-<div class="slide hide_in_print">
-    <h1>That's all folks!</h1>
-    <img class="fullscreen" src="../_/img/thats_all_folks.jpg" alt="That's all folks!" />
-</div>
+<section data-slide-section="">
+  <section>
+    <h1>every game has rules</h1>
+    <aside class="notes"></aside>
+  </section>
 
+  <section>
+    <h1>Rules for fun in the workplace</h1>
+  </section>
+
+  <section>
+    <ol style="font-size: 2em;">
+      <li>Fun should add value</li>
+      <li class="fragment">Fun should be optional</li>
+      <li class="fragment">Fun should be inclusive</li>
+      <li class="fragment">Fun&nbsp;should&nbsp;be&nbsp;safe&nbsp;<s>(NSFW)</s></li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>"Good clean fun"</h1>
+  </section>
+
+  <section>
+    <h1>
+    <span class="fragment">Not<br></span>
+    everything is fun
+    </h1>
+  </section>
+
+
+  <section></section>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section class="nyancat-slide" data-slide-section="" data-background-color="#036">
+  <a class="bottom-link">https://github.com/cristurm/nyan-cat</a>
+
+  <div class="sparks-combo">
+    <div class="spark"></div>
+    <div class="spark"></div>
+    <div class="spark"></div>
+    <div class="spark"></div>
+  </div>
+
+  <div id="wave-a" class="hot rainbow"></div>
+  <div id="wave-a" class="cold rainbow"></div>
+
+  <div id="wave-b" class="hot rainbow"></div>
+  <div id="wave-b" class="cold rainbow"></div>
+
+  <div id="nyan-cat" class="frame1">
+    <div id="tail"></div>
+
+    <div id="paws"></div>
+
+    <div id="pop-tarts-body">
+      <div id="pop-tarts-body-cream"></div>
+    </div>
+
+    <div id="head">
+      <div id="face"></div>
+    </div>
+  </div>
+
+<style>
+/* nyan cat! */
+#nyan-cat {
+  position: absolute;
+  width: 194px;
+  height: 122px;
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -97px;
+  z-index: 2;
+}
+#nyan-cat.frame1,
+#nyan-cat.frame2 {
+  margin-top: -54px;
+}
+/* pop-tarts body */
+#pop-tarts-body {
+  border: solid black;
+  border-width: 6px 0;
+  width: 97px;
+  height: 92px;
+  position: absolute;
+  left: 52px;
+  top: 0;
+}
+#pop-tarts-body:after {
+  content: '';
+  border: solid black;
+  border-width: 0 6px;
+  width: 109px;
+  height: 80px;
+  position: absolute;
+  top: 6px;
+  left: -12px;
+}
+#pop-tarts-body:before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0;
+  width: 109px;
+  height: 92px;
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-color: #fc9;
+  background-size: 6px 6px;
+  background-position: 0 0, 103px 0, 0 86px, 103px 86px;
+}
+#pop-tarts-body-cream {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  top: 6px;
+  left: 0;
+  background: linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat, linear-gradient(#ff3399, #ff3399) no-repeat;
+  background-color: #f9f;
+  background-size: 6px 6px;
+  background-position: 12px 12px, 40px 6px, 58px 6px, 35px 29px, 80px 18px, 18px 40px, 40px 46px, 6px 52px, 29px 63px;
+}
+#pop-tarts-body-cream:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(#ffcc99, #ffcc99) no-repeat, linear-gradient(#ffcc99, #ffcc99) no-repeat, linear-gradient(#ffcc99, #ffcc99) no-repeat, linear-gradient(#ffcc99, #ffcc99) no-repeat, linear-gradient(#ffcc99, #ffcc99) no-repeat, linear-gradient(#ffcc99, #ffcc99) no-repeat, linear-gradient(#ffcc99, #ffcc99) no-repeat, linear-gradient(#ffcc99, #ffcc99) no-repeat;
+  background-size: 12px 6px, 12px 6px, 12px 6px, 12px 6px, 6px 12px, 6px 12px, 6px 12px, 6px 12px;
+  background-position: 0 0, 85px 0, 0 74px, 85px 74px, 0 0, 91px 0, 0 68px, 91px 68px;
+}
+/* pseudo elems */
+#head:before,
+#head:after,
+#tail:before,
+#nyan-cat:before,
+#paws:before,
+#face:before {
+  content: '';
+  position: absolute;
+}
+.sparks-combo {
+  height: 300px;
+  width: 200%;
+  position: relative;
+  animation: woosh 700ms 0ms linear infinite both;
+}
+.spark {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background: linear-gradient(to right, white 0px, white 6px, transparent 6px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 6px, transparent 6px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 6px, transparent 6px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 6px, transparent 6px, transparent 400px) repeat-x;
+}
+.spark:before {
+  background: linear-gradient(to right, white 0px, white 5px, transparent 5px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 5px, transparent 5px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 5px, transparent 5px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 5px, transparent 5px, transparent 400px) repeat-x;
+}
+.spark:after {
+  background: linear-gradient(to right, white 0px, white 6px, transparent 6px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 6px, transparent 6px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 11px, transparent 11px, transparent 400px) repeat-x, linear-gradient(to right, white 0px, white 11px, transparent 11px, transparent 400px) repeat-x;
+}
+.spark:before,
+.spark:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+.spark:nth-child(1) {
+  z-index: 3;
+  top: 0;
+  left: 20px;
+  animation: sparkly 700ms 0ms steps(1) infinite both;
+}
+.spark:nth-child(1):before {
+  animation: sparkly-before 700ms 0ms steps(1) infinite both;
+}
+.spark:nth-child(1):after {
+  animation: sparkly-after 700ms 0ms steps(1) infinite both;
+}
+.spark:nth-child(2) {
+  top: 40px;
+  left: 170px;
+  animation: sparkly 700ms 200ms steps(1) infinite both;
+}
+.spark:nth-child(2):before {
+  animation: sparkly-before 700ms 200ms steps(1) infinite both;
+}
+.spark:nth-child(2):after {
+  animation: sparkly-after 700ms 200ms steps(1) infinite both;
+}
+.spark:nth-child(3) {
+  top: 100px;
+  left: 320px;
+  animation: sparkly 700ms 400ms steps(1) infinite both;
+}
+.spark:nth-child(3):before {
+  animation: sparkly-before 700ms 400ms steps(1) infinite both;
+}
+.spark:nth-child(3):after {
+  animation: sparkly-after 700ms 400ms steps(1) infinite both;
+}
+.spark:nth-child(4) {
+  top: 150px;
+  left: 200px;
+  animation: sparkly 700ms 600ms steps(1) infinite both;
+}
+.spark:nth-child(4):before {
+  animation: sparkly-before 700ms 600ms steps(1) infinite both;
+}
+.spark:nth-child(4):after {
+  animation: sparkly-after 700ms 600ms steps(1) infinite both;
+}
+@keyframes woosh {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: -400px;
+  }
+}
+@keyframes sparkly {
+  0% {
+    background-size: 400px 6px, 0 0, 0 0, 0 0;
+    background-position: 17px 17px, 0 0, 0 0, 0 0;
+  }
+  16% {
+    background-size: 400px 6px, 400px 6px, 400px 6px, 400px 6px;
+    background-position: 17px 0, 34px 17px, 17px 34px, 0 17px;
+  }
+  33% {
+    background-size: 400px 6px, 400px 6px, 400px 6px, 400px 6px;
+    background-position: 17px 0, 34px 17px, 17px 34px, 0 17px;
+  }
+  50% {
+    background-size: 400px 6px, 0 0, 0 0, 0 0;
+    background-position: 17px 17px, 0 0, 0 0, 0 0;
+  }
+  66% {
+    background-size: 400px 11px, 400px 11px, 0 0, 0 0;
+    background-position: 17px 6px, 17px 23px, 0 0, 0 0;
+  }
+  83% {
+    background-size: 0 0, 0 0, 400px 5px, 400px 5px;
+    background-position: 0 0, 0 0, 11px 17px, 22px 17px;
+  }
+  100% {
+    background-size: 400px 6px, 0 0, 0 0, 0 0;
+    background-position: 17px 17px, 0 0, 0 0, 0 0;
+  }
+}
+@keyframes sparkly-before {
+  0% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  16% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  33% {
+    background-size: 400px 5px, 400px 5px, 400px 5px, 400px 5px;
+    background-position: 6px 6px, 29px 6px, 29px 29px, 6px 29px;
+  }
+  50% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  66% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  83% {
+    background-size: 0 0, 0 0, 400px 5px, 400px 5px;
+    background-position: 0 0, 0 0, 17px 12px, 17px 22px;
+  }
+  100% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+}
+@keyframes sparkly-after {
+  0% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  16% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  33% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  50% {
+    background-size: 400px 11px, 400px 11px, 400px 6px, 400px 6px;
+    background-position: 17px 0, 17px 29px, 0 17px, 29px 17px;
+  }
+  66% {
+    background-size: 0 0, 0 0, 400px 6px, 400px 6px;
+    background-position: 0 0, 0 0, 6px 17px, 23px 17px;
+  }
+  83% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-size: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+}
+.rainbow {
+  background: none;
+  height: 102px;
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  margin-right: 45px;
+  z-index: 2;
+}
+.hot:after,
+.hot:before,
+.cold:after,
+.cold:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+}
+.hot:after,
+.hot:before {
+  top: 0;
+}
+.cold:after,
+.cold:before {
+  bottom: 0;
+}
+#wave-a {
+  margin-top: -54px;
+  animation: wavy 700ms 0ms steps(2) infinite both;
+}
+#wave-b {
+  margin-top: -60px;
+  animation: wavy 700ms 350ms steps(2) infinite both;
+}
+/* red */
+.hot {
+  background-image: linear-gradient(to right, #ff0000 49px, transparent 49px, transparent 92px);
+}
+/* orange */
+.hot:after {
+  background-image: linear-gradient(to right, #ff9900 49px, transparent 49px, transparent 92px);
+}
+/* yellow */
+.hot:before {
+  background-image: linear-gradient(to right, #ffff00 49px, transparent 49px, transparent 92px);
+}
+/* green */
+.cold:after {
+  background-image: linear-gradient(to right, #33ff00 49px, transparent 49px, transparent 92px);
+  background-position: left top;
+}
+/* blue */
+.cold:before {
+  background-image: linear-gradient(to right, #0099ff 49px, transparent 49px, transparent 92px);
+}
+/* purple */
+.cold {
+  background-image: linear-gradient(to right, #6633ff 49px, transparent 49px, transparent 92px);
+}
+.rainbow,
+.hot:after,
+.hot:before,
+.cold:after,
+.cold:before {
+  background-size: 95px 17px;
+  background-repeat: repeat-x;
+}
+#wave-a.hot,
+#wave-a.cold:after {
+  background-position: left top;
+}
+#wave-a.hot:after,
+#wave-a.cold:before {
+  background-position: left center;
+}
+#wave-a.hot:before,
+#wave-a.cold {
+  background-position: left bottom;
+}
+#wave-b.hot,
+#wave-b.cold:after {
+  background-position: 46px top;
+}
+#wave-b.hot:after,
+#wave-b.cold:before {
+  background-position: 46px center;
+}
+#wave-b.hot:before,
+#wave-b.cold {
+  background-position: 46px bottom;
+}
+@keyframes wavy {
+  0% {
+    margin-top: -54px;
+  }
+  100% {
+    margin-top: -60px;
+  }
+}
+/* head */
+#head {
+  width: 80px;
+  height: 30px;
+  border: solid black;
+  border-width: 0 6px;
+  background: #999;
+  position: absolute;
+}
+/* #head:before = left ear | #head:after = right ear */
+#head:before,
+#head:after {
+  width: 40px;
+  height: 30px;
+  top: -30px;
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 6px 24px, 12px 6px, 12px 6px, 6px 6px, 6px 6px, 12px 30px, 12px 12px, 12px 6px, 6px 6px;
+  background-position: 0 6px, 6px 0, 30px 18px, 18px 6px, 24px 12px, 6px 6px, 18px 18px, 30px 24px, 18px 12px;
+}
+#head:after {
+  right: 0;
+  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+}
+#face {
+  width: 80px;
+  height: 100%;
+  position: absolute;
+  top: 6px;
+  background: linear-gradient(white, white) no-repeat, linear-gradient(white, white) no-repeat, linear-gradient(#ff9999, #ff9999) no-repeat, linear-gradient(#ff9999, #ff9999) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 6px 6px, 6px 6px, 12px 12px, 12px 12px, 12px 12px, 12px 12px, 6px 6px, 6px 6px, 6px 6px, 6px 6px;
+  background-position: 17px 0, 56px 0, 5px 12px, 68px 12px, 17px 0, 56px 0, 42px 6px, 23px 18px, 40px 18px, 56px 18px;
+}
+/* #face:before = chin */
+#face:before {
+  bottom: -12px;
+  width: 100%;
+  height: 18px;
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 6px 6px, 6px 6px, 6px 6px, 6px 6px, 56px 6px, 39px 6px, 68px 6px, 56px 6px;
+  background-position: 0 0, 6px 6px, 74px 0, 68px 6px, 12px 12px, 23px 0, 6px 0, 12px 6px;
+}
+/* FRAME 1 AND 5 */
+.frame1 #head,
+.frame5 #head {
+  bottom: 36px;
+  right: 0;
+}
+/* FRAMES 2 AND 3 AND 4 */
+.frame2 #head,
+.frame3 #head,
+.frame4 #head {
+  bottom: 36px;
+  right: -6px;
+}
+/* FRAME 6 */
+.frame6 #head {
+  bottom: 42px;
+  right: 0;
+}
+/* paws */
+#paws {
+  width: 156px;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  left: 24px;
+}
+
+#face:before,
+#head:before,
+#paws:before {
+  left:0;
+}
+#head:after {
+  right:0;
+}
+
+/* FRAME 1 */
+.frame1 #paws {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 18px 18px;
+  background-position: 4px 6px, 10px 0, 34px 0, 40px 6px, 94px 0px, 101px 6px, 125px 0px, 131px 6px;
+}
+.frame1 #paws:before {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 12px 12px, 12px 12px, 12px 12px, 12px 12px, 6px 6px;
+  background-position: 10px 6px, 40px 6px, 101px 6px, 131px 6px, 22px 6px;
+}
+/* FRAMES 2 AND 4 */
+.frame2 #paws,
+.frame4 #paws {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 18px 18px;
+  background-position: 10px 6px, 16px 0, 40px 0, 46px 6px, 95px 0, 101px 6px, 125px 0, 131px 6px;
+}
+.frame2 #paws:before,
+.frame4 #paws:before {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 12px 12px;
+  background-position: 16px 6px, 46px 6px, 101px 6px, 131px 6px;
+}
+/* FRAME 3 */
+.frame3 #paws {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 18px 18px;
+  background-position: 16px 6px, 22px 0px, 46px 0px, 52px 6px, 100px 0px, 106px 6px, 131px 0px, 137px 6px;
+}
+.frame3 #paws:before {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 12px 12px;
+  background-position: 22px 6px, 52px 6px, 106px 6px, 137px 6px;
+}
+/* FRAME 5 AND 6 */
+.frame5 #paws,
+.frame6 #paws {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 18px 18px;
+  background-position: 4px 6px, 10px 0, 34px 0, 40px 6px, 94px 0px, 101px 6px, 125px 0px, 131px 6px;
+}
+.frame5 #paws:before,
+.frame6 #paws:before {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 12px 12px;
+  background-position: 10px 6px, 16px 0, 40px 6px, 101px 6px, 131px 6px;
+}
+/* FRAME 6 */
+.frame6 #paws {
+  background-position: 4px 6px, 10px 0, 40px 0, 34px 6px, 101px 0px, 95px 6px, 125px 0px, 131px 6px;
+}
+/* tail */
+#tail {
+  width: 40px;
+  height: 54px;
+  position: absolute;
+  left: 0;
+  top: 40px;
+}
+/* FRAME 1 */
+.frame1 #tail {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 23px 18px;
+  background-position: 6px 0, 11px 6px, 17px 11px, 23px 17px, 34px 23px;
+}
+.frame1 #tail:before {
+  left: 11px;
+  top: 6px;
+  width: 29px;
+  height: 23px;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 11px 6px;
+  background-position: 0 0, 6px 6px, 12px 12px, 18px 18px, 24px 24px;
+}
+/* FRAMES 2 AND 6 */
+.frame2 #tail,
+.frame6 #tail {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 11px 23px, 11px 23px, 11px 23px, 6px 11px;
+  background-position: 12px 6px, 18px 12px, 29px 17px, 6px 12px;
+}
+.frame2 #tail:before,
+.frame6 #tail:before {
+  width: 28px;
+  height: 23px;
+  left: 12px;
+  top: 12px;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 11px 6px;
+  background-position: 0 0, 0 5px, 6px 11px, 17px 11px, 17px 17px;
+}
+/* FRAME 3 */
+.frame3 #tail {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 24px 12px, 24px 12px, 24px 12px, 6px 24px;
+  background-position: 16px 24px, 4px 30px, 10px 36px, 34px 18px;
+}
+.frame3 #tail:before {
+  width: 30px;
+  height: 12px;
+  top: 30px;
+  right: 0;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 24px 6px, 18px 6px;
+  background-position: 6px 0, 0 6px;
+}
+/* FRAME 4 */
+.frame4 #tail {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 12px 24px, 12px 24px, 12px 24px, 6px 12px;
+  background-position: 28px 18px, 16px 24px, 10px 30px, 4px 36px;
+}
+.frame4 #tail:before {
+  width: 30px;
+  height: 24px;
+  top: 24px;
+  right: 0;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 12px 12px, 12px 12px, 12px 6px;
+  background-position: 18px 0, 0 12px, 6px 6px;
+}
+/* FRAME 5 */
+.frame5 #tail {
+  background: linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat, linear-gradient(black, black) no-repeat;
+  background-size: 24px 18px, 24px 18px, 6px 12px, 6px 12px, 12px 6px;
+  background-position: 6px 6px, 12px 12px, 0 12px, 36px 12px, 28px 30px;
+}
+.frame5 #tail:before {
+  width: 34px;
+  height: 18px;
+  top: 12px;
+  right: 0;
+  background: linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat, linear-gradient(#999999, #999999) no-repeat;
+  background-size: 18px 6px, 22px 6px, 6px 6px;
+  background-position: 0 0, 6px 6px, 28px 12px;
+}
+</style>
+<!-- Libs -->
+<script src="./js/jquery-1.12.4.min.js"></script>
+<!-- Nyan Stuff -->
+
+<script>
+console.log('Nyan!');
+
+var NyanCat = function () {
+  return {
+    init: function () {
+      this.cat = $('#nyan-cat');
+      this.framesAmount = 6;
+      this.currentFrame = 1;
+    },
+
+    cycleFrames: function () {
+      var myself = this;
+      this.cat.removeClass('frame' + myself.currentFrame).addClass('frame' + myself.cycleIds(myself.currentFrame));
+      this.currentFrame = this.cycleIds(this.currentFrame);
+    },
+
+    cycleIds: function (_currId) {
+      if (_currId >= this.framesAmount) {
+        _currId = 1;
+      } else {
+        _currId += 1;
+      }
+
+      return _currId;
+    }
+  }
+}
+
+var Sparks = function () {
+  return {
+    init: function (_combo) {
+      var yCombosAmount = Math.ceil($(document).height() / _combo.height()),
+          comboTags = $(document.createElement('div')),
+          newCombo = null;
+
+      for (var a = 0; a < yCombosAmount-1; a += 1) {
+        newCombo = _combo.clone();
+        comboTags.append(newCombo); // <- still have to improve this crap
+      }
+
+      $('.nyancat-slide').prepend(comboTags.html());
+    }
+  }
+};
+
+$(function() {
+  var nyancat = new NyanCat(),
+      sparks = new Sparks();
+
+  nyancat.init();
+  sparks.init($('.sparks-combo'));
+
+  var timer = setInterval(function () {
+    nyancat.cycleFrames();
+  }, 70);
+});
+</script>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section data-slide-section="">
+  <section>
+    <p class="work-example-badge data-badge-discover">Discover</p>
+    <p class="work-example-badge data-badge-define">Define</p>
+    <p class="work-example-badge data-badge-develop">Develop</p>
+    <p class="work-example-badge data-badge-deliver">Deliver</p>
+    <p class="work-example-badge data-badge-destroy">Destroy</p>
+  </section>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section data-slide-section="" data-background-color="#DECBE4"
+style="color:#666"
+  >
+  <section>
+    <h1>Discover</h1>
+  </section>
+
+  <section>
+    <h1>Educational Games</h1>
+  </section>
+
+  <section data-background-image="./img/games/ruby-warrior.png">
+    <h1>Ruby</h1>
+    <a class="bottom-link">https://www.bloc.io/ruby-warrior</a>
+  </section>
+
+  <section data-background-image="./img/games/vim-adventures.png">
+    <h1>VIM</h1>
+    <a class="bottom-link">https://vim-adventures.com/</a>
+  </section>
+
+  <section data-background-image="./img/games/learn-css-selectors.png">
+    <h1>CSS Selectors</h1>
+    <a class="bottom-link">http://cssdiner.com</a>
+  </section>
+
+  <section data-background-image="./img/games/flexbox-froggy.png">
+    <h1>CSS Flexbox</h1>
+    <a class="bottom-link">http://flexboxfroggy.com/</a>
+  </section>
+
+  <section data-background-image="./img/games/learn-swift.png">
+    <h1>Swift</h1>
+    <a class="bottom-link">https://www.apple.com/swift/playgrounds/</a>
+  </section>
+
+  <section data-background-image="./img/games/learn-git.png">
+    <h1>Git</h1>
+    <a class="bottom-link">https://learngitbranching.js.org/</a>
+  </section>
+
+  <section></section>
+
+  <section>
+    <h1>Be social</h1>
+  </section>
+
+  <section>
+    <h2>Be social</h2>
+    <h1>Online</h1>
+    <ul class="fragment">
+      <li>Comments</li>
+      <li>Communities</li>
+      <li>Platforms</li>
+      <li>Social Media</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Be social</h2>
+    <h1>In person</h1>
+    <ul class="fragment">
+      <li>Coding Retreats</li>
+      <li>Conferences</li>
+      <li>Hackathon</li>
+      <li>Local Meetups</li>
+      <li>Summits</li>
+    </ul>
+  </section>
+
+  <section></section>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section data-slide-section="" data-background-color="#B3CDE3">
+  <section>
+    <h1>Define</h1>
+  </section>
+
+  <section data-background="./img/hard-choices-game.png">
+    <h1 style="white-space: nowrap;">The Hard Choices Game</h1>
+    <a class="bottom-link">https://resources.sei.cmu.edu/library/asset-view.cfm?assetID=28919</a>
+  </section>
+
+  <section>
+    <h1>"Dice of Debt" Game</h1>
+  </section>
+
+  <section>
+    <h1>Agile Games And Exercises</h1>
+    <p class="fragment">Google it, yo.</p>
+  </section>
+
+  <section>
+    <h1>?</h1>
+  </section>
+
+  <section></section>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section data-slide-section="" data-background-color="#FED9A6">
+  <section>
+    <h1>Develop</h1>
+  </section>
+
+  <section data-background="" style="color:#666;">
+    <h1>git-smb</h1>
+    <h3>Play sounds effects on common git commands</h3>
+
+    <ul class="fragment">
+      <li>Command & Conquer</li>
+      <li>Duke Nukem</li>
+      <li>Super Mario Bros (NES)</li>
+      <li>Zelda (NES)</li>
+      <li class="fragment">...</li>
+    </ul>
+    <p>
+      <a class="bottom-link">https://github.com/pascaldevink/git-smb</a>
+  </p>
+  </section>
+
+  <section data-background="">
+    <h1>Git Muzak</h1>
+
+    <div class="stretch fragment-container">
+      <img src="img/git-muzak.png"/>
+      <img class="fragment" src="img/git-muzak-detail.png"/>
+    </div>
+
+    <a class="bottom-link">https://github.com/mroth/git-muzak</a>
+  </section>
+
+  <section data-background="">
+    <h1>Test Driven Development</h1>
+  </section>
+
+  <section data-background="">
+    <h1 style="font-size: 300%;">Nyan Cat Test Runner</h1>
+    <img class="strectch" src="img/karma-nyan-reporter.gif"/>
+  </section>
+
+  <section class="nyan-cat-test-runner">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Github Repository</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>JS - Karma</th>
+          <td>dgarlitt/karma-nyan-reporter</td>
+        </tr>
+        <tr>
+          <th>JS - Mocha</th>
+          <td>https://mochajs.org/#nyan</td>
+        <tr>
+          <th>PHP</th>
+          <td>whatthejeff/nyancat-phpunit-resultprinter</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>Python</th>
+          <td>Gr1N/rainbowrunners</td>
+        </tr>
+        <tr>
+          <th>Ruby - minitest</th>
+          <td>tgxworld/minitest-nyan-cat</td>
+        </tr>
+        <tr>
+          <th>Ruby - RSpec </th>
+          <td>mattsears/nyan-cat-formatter</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section></section>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section data-slide-section="" data-background-color="#CCEBC5">
+  <section>
+    <h1>Deliver</h1>
+  </section>
+
+  <section class="big-fat-siren" data-background-image="./img/siren-of-shame.jpg">
+    <h1>Siren of Shame</h1>
+    <ul class="fragment">
+        <li>The Big Siren</li>
+        <li>50 LED's</li>
+        <li>Extra large speaker</li>
+        <li>Eight full inches of shame (20cm)</li>
+    </ul>
+
+    <p>
+      <a class="bottom-link">https://sirenofshame.com/</a>
+    </p>
+  </section>
+
+  <section data-background-image="./img/most-hearted-codepen-2018.png">
+    <h1>Other peoples code</h1>
+    <a class="bottom-link">https://codepen.io/2018/popular/pens/</a>
+  </section>
+
+  <section style="color: #666;">
+    <h1>Share your code</h1>
+  </section>
+
+  <section style="color: #666;">
+    <h2>Share your code</h2>
+    <h1>Repositories</h1>
+    <ul>
+      <li>BitBucket</li>
+      <li>Github</li>
+      <li>Gitlab</li>
+    </ul>
+  </section>
+
+  <section style="color: #666;">
+    <h2>Share your code</h2>
+    <h1>Snippets</h1>
+    <ul>
+      <li>Codepen</li>
+      <li>Gists</li>
+      <li>IdeOne</li>
+      <li>JsFiddle</li>
+      <li>Pastebin</li>
+    </ul>
+  </section>
+
+  <section style="color: #666;">
+    <h2>Share your code</h2>
+    <h1>Live Examples</h1>
+    <ul>
+      <li>bl.ocks.org</li>
+      <li>Codepen</li>
+      <li>Dablet</li>
+      <li>IdeOne</li>
+      <li>JsFiddle</li>
+    </ul>
+  </section>
+
+  <section></section>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section data-slide-section="" data-background-color="#FBB4AE">
+  <section>
+    <h1>Destroy</h1>
+  </section>
+
+  <section data-background-image="./img/broken-build-lamp.gif">
+    <h1 style="white-space: nowrap;" >Early Warning System</h1>
+    <a class="bottom-link fragment">https://github.com/geckoboard/lightbuild</a>
+  </section>
+
+  <section class="" style="color: #666;">
+    <h1>Chaos Monkey</h1>
+    <blockquote>
+      Chaos Monkey randomly terminates virtual machine instances and containers
+      that run inside of your production environment.
+      <span class="fragment">
+        Exposing engineers to failures more frequently incentivizes them to
+        build resilient services.
+      </span>
+    </blockquote>
+
+    <a class="bottom-link">https://github.com/Netflix/chaosmonkey</a>
+  </section>
+
+  <section></section>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section data-slide-section="">
+  <section>
+    <h1>mindset</h1>
+  </section>
+
+  <section class="fun-mindset">
+    <table>
+      <tbody>
+      <tr>
+        <th><h2>Accept</h2></th>
+        <td class="fragment">existing things that <em>should not be</em> fun</td>
+      </tr>
+      <tr>
+        <th><h2>Add</h2></th>
+        <td class="fragment">new things that <em>are</em> fun</td>
+      </tr>
+      <tr>
+        <th><h2>Reduce</h2></th>
+        <td class="fragment">existing things that <em>are not</em> fun</td>
+      </tr>
+      <tr>
+        <th><h2>Improve</h2></th>
+        <td class="fragment">existing things that <em>could be</em> more fun</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
+<!-- ======================================================================= -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+<section data-slide-section="" data-background-image="./img/thats-all-folks.jpg"
+ data-transition="zoom zoom"
+>
+  <section>
+  </section>
+</section>
+<!-- ======================================================================= -->
+<!--                                CLOSING                                  -->
+<!-- ======================================================================= -->
+<section data-slide-section="Closing">
+  <section class="credits">
+    <h1>Sources: </h1>
+    <ul>
+      <li>
+        Slideshow made with <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>
+        <ul>
+          <li><a href="https://github.com/ThomasWeinert/reveal-badges">reveal-badges</a> plugin</li>
+          <li><a href="https://github.com/tkrkt/reveal.js-elapsed-time-bar">reveal-elapsed-time-bar</a> plugin</li>
+        </ul>
+      </li>
+      <li>
+        <a href="http://TheNounProject.com/term/question/28727/">Question icon </a>
+      by <a href="https://thenounproject.com/Krisada/">Krisada from The Noun Project</a> licensed under Creative Commons Attribution</li>
+    </ul>
+    <aside class="notes">
+      Credit where it is due
+    </aside>
+  </section>
+
+  <section data-background-color="rgb(140, 200, 75)"
+  data-background-image	="./img/question-icon-by-Krisada-from-the-noun-project.png">
+    <aside class="notes">
+        So... any questions?
+    </aside>
+  </section>
+
+  <section data-background="#ff8800">
+    <h1 class="size-three-quarter">https://pother.ca/fun</h1>
+  </section>
+</section>
+  </div><!-- /slides -->
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+  <script>
+  /* global Reveal, hljs */
+    let talkDuration = 25; // minutes
+    let defaultTiming = talkDuration * 60 / document.querySelectorAll('.slides section').length
+    let allottedTime = talkDuration * 60 * 1000;
+
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      // autoPlayMedia: null, // Media will only autoplay if data-autoplay is present
+      center: true,
+      controls: true,
+      defaultTiming: defaultTiming, // number of seconds per slide @TODO: Add calcualtion for (allottedTime / slide count)
+      fragmentInURL: true,
+      history: true,
+      pdfSeparateFragments: false, // print all fragments in their visible states on the same slide
+      pdfMaxPagesPerSlide: 1, // ensures no slide grows to more than one printed page
+      progress: true,
+      slideNumber: 'c/t', // h.v, h/v, c or c/t
+      showSlideNumber: 'all', // all | speaker | print
+
+      transition: 'slide',
+
+      // elapsed-time-bar
+      allottedTime: allottedTime,
+      barColor: 'red', // 'rgb(101, 123, 131)',
+      pausedBarColor: 'rgb(101, 123, 131, 0.6)',
+      progressBarHeight: 8,
+
+      // badges
+        badges: {
+          languages: {
+            shell: {
+              label: 'bash',
+              fg: 'white',
+              bg: '#3BAC48',
+              position: 'tr'
+            }
+          }
+        },
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+        // Cross-browser shim for classList
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        // Syntax highlight for <code> elements
+        // { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/search/search.js', async: true },
+        // Zoom in and out with Alt+click
+        //{ src: 'plugin/zoom-js/zoom.js', async: true },
+        // Speaker notes
+        { src: 'plugin/notes/notes.js', async: true },
+        // Progress bar of elapsed time
+        { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'},
+        //
+        { src: 'plugin/reveal-badges/badges.js' }
+      ]
+    });
+  </script>
 </body>
 </html>
